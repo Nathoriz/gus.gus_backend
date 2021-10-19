@@ -9,7 +9,7 @@ import javax.persistence.Id;
 
 @Entity
 @Data
-public class tamaño {
+public class tamanio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -17,7 +17,7 @@ public class tipoproducto {
     @ManyToOne
     private diametro diametro;
     @ManyToOne
-    private tamaño tamaño;
+    private tamanio tamanio;
     @ManyToOne
     private relleno relleno;
 }
