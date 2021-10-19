@@ -9,10 +9,9 @@ import javax.persistence.Id;
 
 @Entity
 @Data
-public class sabor {
+public class Diametro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nombre;
-    private String rgb;
+    private String descripcion;
 }

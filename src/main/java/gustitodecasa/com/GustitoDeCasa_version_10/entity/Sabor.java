@@ -9,12 +9,10 @@ import javax.persistence.Id;
 
 @Entity
 @Data
-public class cliente {
+public class Sabor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
-    private String apellido;
-    private String direccion;
-    private String telefono;
+    private String rgb;
 }

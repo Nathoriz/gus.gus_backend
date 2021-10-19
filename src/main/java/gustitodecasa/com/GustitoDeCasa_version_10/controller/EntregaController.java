@@ -1,6 +1,6 @@
 package gustitodecasa.com.GustitoDeCasa_version_10.controller;
 
-import gustitodecasa.com.GustitoDeCasa_version_10.entity.entrega;
+import gustitodecasa.com.GustitoDeCasa_version_10.entity.Entrega;
 import gustitodecasa.com.GustitoDeCasa_version_10.service.EntregaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,24 +14,24 @@ public class EntregaController {
     private EntregaService service;
 
     @GetMapping("/entregas")
-    public List<entrega> index(){
+    public List<Entrega> index(){
         return service.findAll();
     }
 
     @GetMapping("/entregas/{id}")
-    public entrega Buscar(@PathVariable Long id){
+    public Entrega Buscar(@PathVariable Long id){
         return this.service.findById(id);
     }
 
     @PostMapping("/entregas")
-    public entrega Crear(@RequestBody entrega entre){
+    public Entrega Crear(@RequestBody Entrega entre){
         this.service.save(entre);
         return entre;
     }
 
     @PutMapping("entregas/{id}")
-    public entrega Actualizar(@RequestBody entrega entre, @PathVariable Long id){
-        entrega entregaActualizado = this.service.findById(id);
+    public Entrega Actualizar(@RequestBody Entrega entre, @PathVariable Long id){
+        Entrega entregaActualizado = this.service.findById(id);
         entregaActualizado.setFecha(entre.getFecha());
         entregaActualizado.setHora(entre.getHora());
         this.service.save(entregaActualizado);
@@ -40,7 +40,7 @@ public class EntregaController {
 
     @DeleteMapping
     public void delete(@PathVariable Long id){
-        entrega entregaActual = this.service.findById(id);
+        Entrega entregaActual = this.service.findById(id);
         this.service.delete(entregaActual);
     }
 }

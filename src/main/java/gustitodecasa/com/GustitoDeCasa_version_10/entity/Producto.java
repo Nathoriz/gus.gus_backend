@@ -6,16 +6,17 @@ import javax.persistence.*;
 
 @Entity
 @Data
-public class usuario {
+public class Producto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String contrasenia;
-    private String usuario;
+    private String nombre;
+    private int  stock;
+    private double precio;
+    private String descripcion;
+    private String url;
+    private String estado;
     @OneToOne
-    private admin admin;
-    @OneToOne
-    private cliente cliente;
-    @OneToOne
-    private rol rol;
+    private TipoProducto tipoproducto;
+
 }

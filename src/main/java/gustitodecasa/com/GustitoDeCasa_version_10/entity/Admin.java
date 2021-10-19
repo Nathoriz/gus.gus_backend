@@ -9,9 +9,10 @@ import javax.persistence.Id;
 
 @Entity
 @Data
-public class relleno {
+public class Admin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String descripcion;
+    private String nombre;
+    private String apellido;
 }

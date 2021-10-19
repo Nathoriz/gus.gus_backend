@@ -9,9 +9,12 @@ import javax.persistence.Id;
 
 @Entity
 @Data
-public class tamanio {
+public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String descripcion;
+    private String nombre;
+    private String apellido;
+    private String direccion;
+    private String telefono;
 }
