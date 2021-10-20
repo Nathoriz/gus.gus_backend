@@ -1,7 +1,5 @@
 package gustitodecasa.com.GustitoDeCasa_version_10.service;
 
-
-import gustitodecasa.com.GustitoDeCasa_version_10.entity.Entrega;
 import gustitodecasa.com.GustitoDeCasa_version_10.entity.Tamanio;
 import gustitodecasa.com.GustitoDeCasa_version_10.repository.TamanioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +16,8 @@ public class TamanioService {
 
     @Autowired
     private TamanioRepository tamanioRepository;
+
+    public Tamanio obtener(Long id){return tamanioRepository.getById(id);}
 
     public List<Tamanio> listarTamanio(){
         return tamanioRepository.findAll();

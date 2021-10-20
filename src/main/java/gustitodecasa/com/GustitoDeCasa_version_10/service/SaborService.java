@@ -17,6 +17,8 @@ public class SaborService {
     @Autowired
     private SaborRepository saborRepository;
 
+    public Sabor obtener(Long id){return saborRepository.getById(id);}
+
     public List<Sabor> listar(){return saborRepository.findAll();}
 
     public Sabor guardar(Sabor sabor){
@@ -34,7 +36,7 @@ public class SaborService {
         if(!object.equals(null)){
             object.setNombre(sabor.getNombre());
             object.setRgb(sabor.getRgb());
-            saborRepository.save(sabor);
+            saborRepository.save(object);
         }
         Map<String, String> message = new HashMap<>();
         message.put("Mensaje","Ok");
