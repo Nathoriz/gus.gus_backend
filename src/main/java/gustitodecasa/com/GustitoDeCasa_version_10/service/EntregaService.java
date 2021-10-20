@@ -1,5 +1,6 @@
 package gustitodecasa.com.GustitoDeCasa_version_10.service;
 
+import gustitodecasa.com.GustitoDeCasa_version_10.config.Error.exceptions.BadRequest;
 import gustitodecasa.com.GustitoDeCasa_version_10.entity.Entrega;
 import gustitodecasa.com.GustitoDeCasa_version_10.repository.EntregaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +25,20 @@ public class EntregaService {
         }
 
         public Entrega Guardar(Entrega entrega){
-            return entregaRepository.save(entrega);
+            if(entrega.getFecha().isEmpty() && entrega.getHora().isEmpty()) throw new BadRequest("Ingrese la Fecha y Hora");
+            if(entrega.getHora().isEmpty() || entrega.getFecha().isEmpty()){
+                if(entrega.getHora().isEmpty()){
+                    throw new BadRequest("Ingrese la hora");
+                }else {
+                    throw new BadRequest("Ingrese la fecha");
+                }
+            }
+            entrega.setFecha(entrega.getFecha());
+            entrega.setHora(entrega.getHora());
 
+
+
+            return entregaRepository.save(entrega);
         }
 
         public ResponseEntity<?> Actualizar(Entrega entrega){
