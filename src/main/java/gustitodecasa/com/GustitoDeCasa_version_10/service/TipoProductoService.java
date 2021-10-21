@@ -6,7 +6,6 @@ import gustitodecasa.com.GustitoDeCasa_version_10.entity.Tamanio;
 import gustitodecasa.com.GustitoDeCasa_version_10.entity.TipoProducto;
 import gustitodecasa.com.GustitoDeCasa_version_10.repository.TipoProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.support.NullValue;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -52,10 +51,10 @@ public class TipoProductoService {
 
         tipoProducto.setNombre(tipoProducto.getNombre());
         tipoProducto.setCubierta(tipoProducto.getCubierta());
-        tipoProducto.setSabor(tipoProducto.getSabor());
-        tipoProducto.setDiametro(tipoProducto.getDiametro());
-        tipoProducto.setTamanio(tipoProducto.getTamanio());
-        tipoProducto.setRelleno(tipoProducto.getRelleno());
+//        tipoProducto.setSabor(tipoProducto.getSabor());
+//        tipoProducto.setDiametro(tipoProducto.getDiametro());
+//        tipoProducto.setTamanio(tipoProducto.getTamanio());
+//        tipoProducto.setRelleno(tipoProducto.getRelleno());
         return tipoProductoRepository.save(tipoProducto);
     }
 
@@ -64,10 +63,10 @@ public class TipoProductoService {
         if(!object.equals(null)){
             object.setNombre(tipoProducto.getNombre());
             object.setCubierta(tipoProducto.getCubierta());
-            object.setSabor(tipoProducto.getSabor());
-            object.setDiametro(tipoProducto.getDiametro());
-            object.setTamanio(tipoProducto.getTamanio());
-            object.setRelleno(tipoProducto.getRelleno());
+//            object.setSabor(tipoProducto.getSabor());
+//            object.setDiametro(tipoProducto.getDiametro());
+//            object.setTamanio(tipoProducto.getTamanio());
+//            object.setRelleno(tipoProducto.getRelleno());
             tipoProductoRepository.save(object);
         }
         Map<String, String> message = new HashMap<>();
@@ -77,11 +76,11 @@ public class TipoProductoService {
 
     public void eliminar(Long id){ tipoProductoRepository.deleteById(id);}
 
-    private Object obtenerObjeto(TipoProducto tipoProducto, String objectname){
-        if(objectname.equals("tamanio")) return tamanioService.obtener(tipoProducto.getSabor().getId());
-        else if(objectname.equals("sabor")) return saborService.obtener(tipoProducto.getSabor().getId());
-        else if(objectname.equals("relleno")) return rellenoService.obtener(tipoProducto.getSabor().getId());
-        else if(objectname.equals("diametro")) return diametroService.obtener(tipoProducto.getSabor().getId());
-        else return null;
-    }
+//    private Object obtenerObjeto(TipoProducto tipoProducto, String objectname){
+//        if(objectname.equals("tamanio")) return tamanioService.obtener(tipoProducto.getSabor().getId());
+//        else if(objectname.equals("sabor")) return saborService.obtener(tipoProducto.getSabor().getId());
+//        else if(objectname.equals("relleno")) return rellenoService.obtener(tipoProducto.getSabor().getId());
+//        else if(objectname.equals("diametro")) return diametroService.obtener(tipoProducto.getSabor().getId());
+//        else return null;
+//    }
 }

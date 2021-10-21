@@ -3,6 +3,7 @@ package gustitodecasa.com.GustitoDeCasa_version_10.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -12,8 +13,10 @@ public class TipoProducto {
     private Long id;
     private String nombre;
     private String cubierta;
-    @ManyToOne
-    private Sabor sabor;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "tipoProducto")
+    private List<TipoProductoSabor> tipoProductoSabores;
+
     @ManyToOne
     private Diametro diametro;
     @ManyToOne
