@@ -17,8 +17,6 @@ public class DiametroService {
     @Autowired
     private DiametroRepository diametroRepository;
 
-    public Diametro obtener(Long id){return diametroRepository.getById(id);}
-
     public List<Diametro> listar(){return diametroRepository.findAll();}
 
     public Diametro guardar(Diametro diametro){
@@ -31,7 +29,7 @@ public class DiametroService {
         Diametro object = diametroRepository.findById(diametro.getId()).orElse(null);
         if(!object.equals(null)){
             object.setDescripcion(diametro.getDescripcion());
-            diametroRepository.save(object);
+            diametroRepository.save(diametro);
         }
         Map<String, String> message = new HashMap<>();
         message.put("Mensaje","Ok");

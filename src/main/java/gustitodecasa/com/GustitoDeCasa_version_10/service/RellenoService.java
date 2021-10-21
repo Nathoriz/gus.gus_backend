@@ -17,8 +17,6 @@ public class RellenoService {
     @Autowired
     private RellenoRepository rellenoRepository;
 
-    public Relleno obtener(Long id){return rellenoRepository.getById(id);}
-
     public List<Relleno> listar(){return rellenoRepository.findAll();}
 
     public Relleno guardar(Relleno relleno){
@@ -31,7 +29,7 @@ public class RellenoService {
         Relleno object = rellenoRepository.findById(relleno.getId()).orElse(null);
         if(!object.equals(null)){
             object.setDescripcion(relleno.getDescripcion());
-            rellenoRepository.save(object);
+            rellenoRepository.save(relleno);
         }
         Map<String, String> message = new HashMap<>();
         message.put("Mensaje","Ok");
