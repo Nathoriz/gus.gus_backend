@@ -55,8 +55,8 @@ public class UsuarioService implements UserDetailsService {
         if( username != null ) throw new BadRequest( "El nombre de usuario ya existe." );
         usuarioDTO.setUsuario( usuarioDTO.getUsuario() );
 
-        if( usuarioDTO.getContrasenia() == null ) throw new BadRequest( "Ingrese una contraseña.");
-        if( usuarioDTO.getContrasenia().isEmpty() ) throw new BadRequest( "Ingrese una contraseña.");
+        if( usuarioDTO.getContrasenia() == null ) throw new BadRequest( "Ingrese una contraseña." );
+        if( usuarioDTO.getContrasenia().isEmpty() ) throw new BadRequest( "Ingrese una contraseña." );
         else {
             if( usuarioDTO.getContrasenia().length() < 8 )
                 throw new BadRequest( "Ingrese correctamente la contraseña (8 dígitos mínimo)." );
@@ -84,12 +84,12 @@ public class UsuarioService implements UserDetailsService {
         if( adminDTO.getUsuario().isEmpty() ) throw new BadRequest( "Ingrese un nombre de usuario." );
         if( adminDTO.getUsuario() == null ) throw new BadRequest( "Ingrese un nombre de usuario." );
         else {
-            if( usuarioRepository.existsUsuarioByUsuario(adminDTO.getUsuario() ) ) throw new BadRequest( "El nombre de usuario ya existe.");
+            if( usuarioRepository.existsUsuarioByUsuario(adminDTO.getUsuario() ) ) throw new BadRequest( "El nombre de usuario ya existe." );
             adminDTO.setUsuario( adminDTO.getUsuario() );
         }
 
-        if( adminDTO.getContrasenia().isEmpty() ) throw new BadRequest( "Ingrese una contraseña.");
-        if( adminDTO.getContrasenia() == null ) throw new BadRequest( "Ingrese una contraseña.");
+        if( adminDTO.getContrasenia().isEmpty() ) throw new BadRequest( "Ingrese una contraseña." );
+        if( adminDTO.getContrasenia() == null ) throw new BadRequest( "Ingrese una contraseña." );
         adminDTO.setContrasenia( customPasswordEncoder.encode( adminDTO.getContrasenia() ) );
 
         if( adminDTO.getAdmin().getDni().isEmpty() ) throw new BadRequest( "Ingrese un admin" );
@@ -115,7 +115,7 @@ public class UsuarioService implements UserDetailsService {
         String username = usuarioLoginDTO.getUsuario();
         String password = usuarioLoginDTO.getContrasenia();
 
-        if( username.isEmpty() ) throw new BadRequest("Ingrese su nombre de usuario.");
+        if( username.isEmpty() ) throw new BadRequest( "Ingrese su nombre de usuario." );
         if( password.isEmpty() ) throw new BadRequest( "Ingrese su constraseña." );
         else {
             if( usuarioRepository.existsUsuarioByUsuario(username) ){
