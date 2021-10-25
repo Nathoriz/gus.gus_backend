@@ -5,5 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     public Usuario findByUsuario( String username );
-    public Usuario findUsuarioByCliente_Telefono( String telefono );
+    boolean existsUsuarioByUsuarioAndContrasenia( String username, String password );
+    boolean existsUsuarioByUsuario( String username );
+    boolean existsUsuarioByContrasenia( String password );
 }
