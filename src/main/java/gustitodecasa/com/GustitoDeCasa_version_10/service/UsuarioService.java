@@ -90,7 +90,12 @@ public class UsuarioService implements UserDetailsService {
 
         if( adminDTO.getContrasenia().isEmpty() ) throw new BadRequest( "Ingrese una contraseña." );
         if( adminDTO.getContrasenia() == null ) throw new BadRequest( "Ingrese una contraseña." );
-        adminDTO.setContrasenia( customPasswordEncoder.encode( adminDTO.getContrasenia() ) );
+        else{
+            if( adminDTO.getContrasenia().length() < 8 )
+                throw new BadRequest( "Ingrese correctamente la contraseña (8 dígitos mínimo)." );
+            adminDTO.setContrasenia( customPasswordEncoder.encode( adminDTO.getContrasenia() ) );
+        }
+
 
         if( adminDTO.getAdmin().getDni().isEmpty() ) throw new BadRequest( "Ingrese un admin" );
         if( adminDTO.getAdmin().getDni() == null) throw new BadRequest( "Ingrese un admin" );
@@ -127,12 +132,12 @@ public class UsuarioService implements UserDetailsService {
                     response.put("estado", true );
                     return new ResponseEntity<>( response, HttpStatus.OK );
                 }else {
-                    response.put("ErrorMessage", "La contraseña es incorrecta." );
-                    return new ResponseEntity<>( response, HttpStatus.UNAUTHORIZED );
+                    response.put("message", "La contraseña es incorrecta." );
+                    return new ResponseEntity<>( response, HttpStatus.BAD_REQUEST );
                 }
             }else {
-                response.put("ErrorMessage", "El nombre de usuario o la contraseña son incorrectas." );
-                return new ResponseEntity<>( response, HttpStatus.UNAUTHORIZED );
+                response.put("message", "El nombre de usuario o la contraseña son incorrectas." );
+                return new ResponseEntity<>( response, HttpStatus.BAD_REQUEST );
             }
         }
     }
