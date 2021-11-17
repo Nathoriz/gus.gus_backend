@@ -1,7 +1,11 @@
 package gustitodecasa.com.GustitoDeCasa_version_10.service;
 
 import gustitodecasa.com.GustitoDeCasa_version_10.config.Error.exceptions.BadRequest;
+import gustitodecasa.com.GustitoDeCasa_version_10.entity.Distrito;
 import gustitodecasa.com.GustitoDeCasa_version_10.entity.Entrega;
+import gustitodecasa.com.GustitoDeCasa_version_10.entity.Rol;
+import gustitodecasa.com.GustitoDeCasa_version_10.repository.ClienteRepository;
+import gustitodecasa.com.GustitoDeCasa_version_10.repository.DistritoRepository;
 import gustitodecasa.com.GustitoDeCasa_version_10.repository.EntregaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,6 +21,8 @@ public class EntregaService {
 
     @Autowired
     private EntregaRepository entregaRepository;
+    @Autowired
+    private DistritoRepository distritoRepository;
 
         public List<Entrega> listarEntrega(){
             return entregaRepository.findAll();
@@ -31,9 +37,12 @@ public class EntregaService {
                     throw new BadRequest("Ingrese la fecha");
                 }
             }
+            if( entrega.getDistrito() == null || entrega.getDistrito().getId() == 0 ) throw new BadRequest("Seleccione un distrito");
+            Distrito distrito = distritoRepository.findById(entrega.getDistrito().getId()).orElse(null);
+            if(distrito.equals(null) || distrito == null) throw new BadRequest("El distrito no existe");
             entrega.setFecha(entrega.getFecha());
             entrega.setHora(entrega.getHora());
-
+            entrega.setDistrito(entrega.getDistrito());
 
 
             return entregaRepository.save(entrega);
@@ -43,6 +52,9 @@ public class EntregaService {
             Entrega entrega1 = entregaRepository.findById(entrega.getId()).orElse(null);
             entrega1.setFecha(entrega.getFecha());
             entrega1.setHora(entrega.getHora());
+            Distrito distrito = distritoRepository.findById(entrega.getDistrito().getId()).orElse(null);
+            if(distrito.equals(null) || distrito == null) throw new BadRequest("El distrito no existe");
+            entrega1.setDistrito(entrega.getDistrito());
             entregaRepository.save(entrega1);
 
             //para darle un mensaje
@@ -54,7 +66,4 @@ public class EntregaService {
         public void Eliminar(Long id){
             entregaRepository.deleteById(id);
         }
-
-
-
 }

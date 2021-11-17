@@ -6,15 +6,13 @@ import javax.persistence.*;
 
 @Entity
 @Data
-public class Pedido {
+public class Proveedor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String nombre;
     @ManyToOne
-    private Cliente cliente;
-    @OneToOne
-    private Entrega entrega;
-    private String fechaCreación;
-    @ManyToOne
-    private Estado estado;
+    private Distrito distrito;
+    private String direccion;
+    private String telefono;
 }

@@ -6,15 +6,15 @@ import javax.persistence.*;
 
 @Entity
 @Data
-public class Pedido {
+public class PlantillaProduccionInsumo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
-    private Cliente cliente;
-    @OneToOne
-    private Entrega entrega;
-    private String fechaCreación;
+    private PlantillaProduccion plantillaProduccion;
     @ManyToOne
-    private Estado estado;
+    private Insumo insumo;
+    private String tipoUnidad;
+    private int cantidadUso;
+    private double costo;
 }

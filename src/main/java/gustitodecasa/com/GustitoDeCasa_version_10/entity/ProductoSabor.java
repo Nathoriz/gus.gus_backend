@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Data
-public class TipoProductoSabor {
+public class ProductoSabor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -16,6 +16,6 @@ public class TipoProductoSabor {
     private Sabor sabor;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "tipoProductoId", referencedColumnName = "id")
-    private TipoProducto tipoProducto;
+    @JoinColumn(name = "productoId", referencedColumnName = "id")
+    private Producto Producto;
 }

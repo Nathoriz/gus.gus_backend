@@ -2,7 +2,6 @@ package gustitodecasa.com.GustitoDeCasa_version_10.controller;
 
 
 import gustitodecasa.com.GustitoDeCasa_version_10.entity.Diametro;
-import gustitodecasa.com.GustitoDeCasa_version_10.entity.Entrega;
 import gustitodecasa.com.GustitoDeCasa_version_10.service.DiametroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

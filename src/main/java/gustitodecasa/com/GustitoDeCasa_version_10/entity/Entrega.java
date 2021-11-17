@@ -2,10 +2,7 @@ package gustitodecasa.com.GustitoDeCasa_version_10.entity;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Data
@@ -14,5 +11,7 @@ public class Entrega {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String fecha;
+    @ManyToOne
+    private Distrito distrito;
     private String hora;
 }

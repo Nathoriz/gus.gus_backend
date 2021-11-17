@@ -4,14 +4,18 @@ import lombok.Data;
 
 import javax.persistence.*;
 
-
 @Entity
 @Data
-public class Sabor {
+public class Insumo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
-    private String color;
-
+    @ManyToOne
+    private Proveedor proveedor;
+    private String tipoUnidad;
+    private double costoPorUnidad;
+    private double costoPorMayor;
+    private int cantUnidad;
+    private int cantMayor;
 }

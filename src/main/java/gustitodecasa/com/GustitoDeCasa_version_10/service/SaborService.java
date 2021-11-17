@@ -20,12 +20,12 @@ public class SaborService {
     public List<Sabor> listar(){return saborRepository.findAll();}
 
     public Sabor guardar(Sabor sabor){
-        if(sabor.getNombre().isEmpty() || sabor.getRgb().isEmpty()){
+        if(sabor.getNombre().isEmpty() || sabor.getColor().isEmpty()){
             if(sabor.getNombre().isEmpty()) throw new BadRequest("Ingrese el nombre");
-            else if (sabor.getRgb().isEmpty()) throw new BadRequest("Ingrese el RGB (color)");
+            else if (sabor.getColor().isEmpty()) throw new BadRequest("Ingrese el RGB (color)");
         }
         sabor.setNombre(sabor.getNombre());
-        sabor.setRgb(sabor.getRgb());
+        sabor.setColor(sabor.getColor());
         return saborRepository.save(sabor);
     }
 
@@ -33,7 +33,7 @@ public class SaborService {
         Sabor object = saborRepository.findById(sabor.getId()).orElse(null);
         if(!object.equals(null)){
             object.setNombre(sabor.getNombre());
-            object.setRgb(sabor.getRgb());
+            object.setColor(sabor.getColor());
             saborRepository.save(sabor);
         }
         Map<String, String> message = new HashMap<>();
