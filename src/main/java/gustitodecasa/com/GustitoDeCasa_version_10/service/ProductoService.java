@@ -16,4 +16,11 @@ public class ProductoService {
     public List<Producto> ListarProductos(){
         return productoRespository.findAll();
     }
+    public List<Producto> listaPorCategoria( String categoria ){
+        List<Producto> producto =  productoRespository.findProductoByCategoriaNombre( categoria );
+        if( producto.isEmpty() ){
+            return producto;
+        }
+        return producto;
+    }
 }

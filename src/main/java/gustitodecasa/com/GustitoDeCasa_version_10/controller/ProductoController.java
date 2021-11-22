@@ -19,4 +19,9 @@ public class ProductoController {
     public ResponseEntity<?> ListarProducto(){
         return ResponseEntity.status(HttpStatus.OK).body( productoService.ListarProductos() );
     }
+
+    @GetMapping( "/listar" )
+    public ResponseEntity<?> ListarPorCategoria( String categoria ){
+        return ResponseEntity.status( HttpStatus.OK ).body( productoService.listaPorCategoria( categoria ) );
+    }
 }

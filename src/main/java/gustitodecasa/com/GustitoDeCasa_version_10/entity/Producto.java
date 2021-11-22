@@ -11,12 +11,12 @@ public class Producto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
+    @Column( length = 350)
     private String urlimg;
     private String descripcion;
     @ManyToOne
     private Categoria categoria;
     private double precio;
-    private int stock;
     @ManyToOne
     private Estado estado;
     @ManyToOne
