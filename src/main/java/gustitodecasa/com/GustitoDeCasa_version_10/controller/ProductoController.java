@@ -22,6 +22,11 @@ public class ProductoController {
 
     @GetMapping( "/listar" )
     public ResponseEntity<?> ListarPorCategoria( String categoria ){
-        return ResponseEntity.status( HttpStatus.OK ).body( productoService.listaPorCategoria( categoria ) );
+        if (categoria.equals("Todo")) {
+            return ResponseEntity.status(HttpStatus.OK).body( productoService.ListarProductos() );
+        }else{
+            return ResponseEntity.status( HttpStatus.OK ).body( productoService.listaPorCategoria( categoria ) );
+        }
+
     }
 }

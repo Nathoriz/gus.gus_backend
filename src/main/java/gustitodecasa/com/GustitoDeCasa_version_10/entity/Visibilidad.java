@@ -13,5 +13,5 @@ public class Visibilidad {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private boolean visible;
+    private Boolean visible;
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class ProductoService {
@@ -18,9 +19,11 @@ public class ProductoService {
     }
     public List<Producto> listaPorCategoria( String categoria ){
         List<Producto> producto =  productoRespository.findProductoByCategoriaNombre( categoria );
+
         if( producto.isEmpty() ){
             return producto;
         }
+
         return producto;
     }
 }
