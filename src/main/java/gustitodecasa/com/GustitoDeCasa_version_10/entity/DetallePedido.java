@@ -14,6 +14,8 @@ public class DetallePedido {
     private Pedido pedido;
     @ManyToOne
     private Producto producto;
+    @ManyToOne
+    private Personalizacion personalizacion;
     private int cantidad;
     private double subtotal;
 }
