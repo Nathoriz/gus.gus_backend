@@ -27,6 +27,11 @@ public class ProductoController {
         }else{
             return ResponseEntity.status( HttpStatus.OK ).body( productoService.listaPorCategoria( categoria ) );
         }
-
     }
+
+    @GetMapping( "/filtro" )
+    public ResponseEntity<?> FiltroProducto( String nombre ){
+        return ResponseEntity.status( HttpStatus.OK ).body( productoService.filtroProductos( nombre ) );
+    }
+    
 }
