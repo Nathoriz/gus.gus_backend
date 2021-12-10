@@ -12,10 +12,10 @@ public class ProductoRelleno {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "rellenoId", referencedColumnName = "id")
+//    @JoinColumn(name = "rellenoId", referencedColumnName = "id")
     private Relleno relleno;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "productoId", referencedColumnName = "id")
-    private Producto Producto;
+//    @JoinColumn(name = "productoId", referencedColumnName = "id")
+    private Producto producto;
 }
