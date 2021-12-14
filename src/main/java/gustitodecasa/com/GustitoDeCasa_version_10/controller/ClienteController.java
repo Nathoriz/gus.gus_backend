@@ -5,10 +5,7 @@ import gustitodecasa.com.GustitoDeCasa_version_10.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/cliente")
@@ -20,5 +17,15 @@ public class ClienteController {
     @PostMapping( "/registrar" )
     public ResponseEntity<?> RegistrarCliente(@RequestBody Cliente cliente){
         return ResponseEntity.status(HttpStatus.OK).body(clienteService.Registrar( cliente ));
+    }
+
+    @PostMapping( "/{id}" )
+    public ResponseEntity<?> FindCliente( @PathVariable( "id" ) Long id ){
+        return ResponseEntity.status( HttpStatus.OK ).body( clienteService.findById( id ) );
+    }
+
+    @PutMapping( "/update" )
+    public ResponseEntity<?> UpdateCliente( @RequestBody Cliente cliente ){
+        return ResponseEntity.status( HttpStatus.OK ).body( clienteService.Update( cliente ) );
     }
 }
