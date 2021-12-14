@@ -2,9 +2,15 @@ package gustitodecasa.com.GustitoDeCasa_version_10.service;
 
 import gustitodecasa.com.GustitoDeCasa_version_10.config.Error.exceptions.BadRequest;
 import gustitodecasa.com.GustitoDeCasa_version_10.entity.Cliente;
+import gustitodecasa.com.GustitoDeCasa_version_10.entity.Distrito;
 import gustitodecasa.com.GustitoDeCasa_version_10.repository.ClienteRepository;
+import gustitodecasa.com.GustitoDeCasa_version_10.repository.DistritoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
 @Service
 public class ClienteService {
 
@@ -14,11 +20,15 @@ public class ClienteService {
     public Cliente Registrar( Cliente cliente ){
         if( cliente.getNombreCompleto() == null ) throw new BadRequest( "Ingrese su nombre completo." );
         if( cliente.getNombreCompleto().isEmpty() ) throw new BadRequest( "Ingrese su nombre completo." );
-        cliente.setNombreCompleto( cliente.getNombreCompleto() );
+        cliente.setNombreCompleto(cliente.getNombreCompleto() );
 
         if( cliente.getDireccion() == null ) throw new BadRequest( "Ingrese su dirección." );
         if( cliente.getDireccion().isEmpty() ) throw new BadRequest( "Ingrese su dirección." );
         cliente.setDireccion( cliente.getDireccion() );
+
+        if( cliente.getDistrito() == null ) throw new BadRequest( "Ingrese su dirección." );
+        cliente.setDistrito( cliente.getDistrito());
+
 
         if( cliente.getTelefono() == null ) throw new BadRequest( "Ingrese su número telefónico." );
         if( cliente.getTelefono().isEmpty() ) throw new BadRequest( "Ingrese su número telefónico." );
@@ -31,5 +41,7 @@ public class ClienteService {
         }
         return clienteRepository.save( cliente );
     }
+
+
 
 }

@@ -2,10 +2,7 @@ package gustitodecasa.com.GustitoDeCasa_version_10.entity;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Data
@@ -16,4 +13,6 @@ public class Cliente {
     private String nombreCompleto;
     private String direccion;
     private String telefono;
+    @ManyToOne
+    private Distrito distrito;
 }

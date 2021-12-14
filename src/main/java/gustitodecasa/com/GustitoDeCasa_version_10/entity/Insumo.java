@@ -14,7 +14,7 @@ public class Insumo {
     @ManyToOne
     private Proveedor proveedor;
     private String tipoUnidad;
-    private double costoPorUnidad;
+    private double  costoPorUnidad;
     private double costoPorMayor;
     private int cantUnidad;
     private int cantMayor;
