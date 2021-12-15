@@ -32,4 +32,9 @@ public class DistritoController {
 
     @DeleteMapping("/eliminar/{id}")
     public void eliminar(@PathVariable Long id){ distritoService.eliminar(id);}
+
+    @GetMapping( "/buscar" )
+    public ResponseEntity<?> BuscarDistrito( String nombre ){
+        return ResponseEntity.status( HttpStatus.OK ).body( distritoService.buscarCliente( nombre ) );
+    }
 }

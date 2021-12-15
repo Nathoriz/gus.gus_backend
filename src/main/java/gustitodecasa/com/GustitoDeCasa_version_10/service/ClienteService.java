@@ -66,9 +66,14 @@ public class ClienteService {
             throw new BadRequest( "Ingrese su nueva dirección" );
         cliente.setDireccion( Ncliente.getDireccion() );
 
-        if( cliente.getDistrito() == null ) throw new BadRequest( "Ingrese su dirección." );
+        if( cliente.getDistrito() == null ) throw new BadRequest( "Ingrese su Distrito." );
         cliente.setDistrito( Ncliente.getDistrito());
 
         return clienteRepository.save( cliente );
     }
+
+    public List<Cliente> findAll(){
+        return clienteRepository.findAll();
+    }
+
 }
