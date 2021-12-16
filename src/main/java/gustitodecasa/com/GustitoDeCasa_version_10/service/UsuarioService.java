@@ -164,6 +164,12 @@ public class UsuarioService implements UserDetailsService {
         if( nuevoPasswordDTO.getConfirmpassword().isEmpty() || nuevoPasswordDTO.getConfirmpassword() == null )
             throw new BadRequest( "Ingrese la misma contraseña." );
 
+        if( nuevoPasswordDTO.getPassword().length() < 8 )
+            throw new BadRequest( "Ingrese correctamente la contraseña (8 dígitos mínimo)." );
+
+        if( nuevoPasswordDTO.getConfirmpassword().length() < 8 )
+            throw new BadRequest( "Ingrese correctamente la contraseña (8 dígitos mínimo)." );
+
         if( !nuevoPasswordDTO.getPassword().equals( nuevoPasswordDTO.getConfirmpassword()) )
             throw new BadRequest( "Las contraseñas no coinciden." );
         else {
