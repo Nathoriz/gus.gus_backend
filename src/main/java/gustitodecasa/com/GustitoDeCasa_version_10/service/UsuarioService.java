@@ -1,10 +1,7 @@
 package gustitodecasa.com.GustitoDeCasa_version_10.service;
 
 import gustitodecasa.com.GustitoDeCasa_version_10.Utils.MHelpers;
-import gustitodecasa.com.GustitoDeCasa_version_10.Utils.other.AdminDTO;
-import gustitodecasa.com.GustitoDeCasa_version_10.Utils.other.UserDetailDTO;
-import gustitodecasa.com.GustitoDeCasa_version_10.Utils.other.UsuarioDTO;
-import gustitodecasa.com.GustitoDeCasa_version_10.Utils.other.UsuarioLoginDTO;
+import gustitodecasa.com.GustitoDeCasa_version_10.Utils.other.*;
 import gustitodecasa.com.GustitoDeCasa_version_10.config.Error.exceptions.BadRequest;
 import gustitodecasa.com.GustitoDeCasa_version_10.custom.CustomPasswordEncoder;
 import gustitodecasa.com.GustitoDeCasa_version_10.entity.Admin;
@@ -139,6 +136,43 @@ public class UsuarioService implements UserDetailsService {
                 response.put("message", "El nombre de usuario o la contraseña son incorrectas." );
                 return new ResponseEntity<>( response, HttpStatus.BAD_REQUEST );
             }
+        }
+    }
+    public ResponseEntity<?> ValidarPassword(PasswordDTO passwordDTO){
+        Map<String, Object> response = new HashMap<>();
+        if( passwordDTO.getId() == null ) throw new BadRequest( "Error." );
+        if( passwordDTO.getPassword().isEmpty() || passwordDTO.getPassword() == null ) throw new BadRequest( "Ingrese su contraseña." );
+        Usuario usuario = usuarioRepository.findUsuarioById( passwordDTO.getId() );
+        if( customPasswordEncoder.matches( passwordDTO.getPassword(), usuario.getContrasenia() ) ){
+            response.put( "estado", true );
+            response.put( "message", "Validación completada "+ usuario.getUsuario() );
+            return new ResponseEntity<>( response, HttpStatus.OK );
+        }else {
+            response.put( "estado", false );
+            response.put( "message", "La contraseña no coincide." );
+            return new ResponseEntity<>( response, HttpStatus.BAD_REQUEST );
+        }
+    }
+    public ResponseEntity<?> CambiarPassword( NuevoPasswordDTO nuevoPasswordDTO ){
+        Map<String, Object> response = new HashMap<>();
+
+        if( nuevoPasswordDTO.getId() == null ) throw new BadRequest( "Error." );
+        if( nuevoPasswordDTO.getPassword().isEmpty() || nuevoPasswordDTO.getPassword() == null )
+            throw new BadRequest( "Ingrese la contraseña" );
+        nuevoPasswordDTO.setPassword( nuevoPasswordDTO.getPassword() );
+
+        if( nuevoPasswordDTO.getConfirmpassword().isEmpty() || nuevoPasswordDTO.getConfirmpassword() == null )
+            throw new BadRequest( "Ingrese la misma contraseña." );
+
+        if( !nuevoPasswordDTO.getPassword().equals( nuevoPasswordDTO.getConfirmpassword()) )
+            throw new BadRequest( "Las contraseñas no coinciden." );
+        else {
+            Usuario usuario = usuarioRepository.findUsuarioById( nuevoPasswordDTO.getId() );
+            usuario.setContrasenia( customPasswordEncoder.encode( nuevoPasswordDTO.getPassword() ) );
+            usuarioRepository.save( usuario );
+            response.put( "estado", true );
+            response.put( "message", "Password Actualizado." );
+            return new ResponseEntity<>( response, HttpStatus.OK );
         }
     }
 

@@ -1,8 +1,6 @@
 package gustitodecasa.com.GustitoDeCasa_version_10.controller;
 
-import gustitodecasa.com.GustitoDeCasa_version_10.Utils.other.AdminDTO;
-import gustitodecasa.com.GustitoDeCasa_version_10.Utils.other.UsuarioDTO;
-import gustitodecasa.com.GustitoDeCasa_version_10.Utils.other.UsuarioLoginDTO;
+import gustitodecasa.com.GustitoDeCasa_version_10.Utils.other.*;
 import gustitodecasa.com.GustitoDeCasa_version_10.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,4 +29,13 @@ public class UsuarioController {
         return usuarioService.loginUsuario( loginDTO );
     }
 
+    @PostMapping( "/validar" )
+    public ResponseEntity<?> ValidarPassword( @RequestBody PasswordDTO passwordDTO ){
+        return usuarioService.ValidarPassword( passwordDTO );
+    }
+
+    @PutMapping( "/update" )
+    public ResponseEntity<?> CambiarPassword(@RequestBody NuevoPasswordDTO nuevoPasswordDTO){
+        return usuarioService.CambiarPassword( nuevoPasswordDTO );
+    }
 }
