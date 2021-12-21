@@ -128,5 +128,7 @@ public class ProductoService {
         }
     }
 
-
+    public List<Producto> findForid( Long id ){
+        return productoRespository.findProductoById( id );
+    }
 }

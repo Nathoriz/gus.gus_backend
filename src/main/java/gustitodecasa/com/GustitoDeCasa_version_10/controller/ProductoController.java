@@ -39,5 +39,9 @@ public class ProductoController {
     public ResponseEntity<?> DetalleProducto(@PathVariable( "id" ) Long id){
         return productoService.detalleProducto( id );
     }
-    
+
+    @GetMapping( "/find/{id}" )
+    public ResponseEntity<?> findListProductForId( @PathVariable( "id" ) Long id ){
+        return ResponseEntity.status( HttpStatus.OK ).body( productoService.findForid( id ) );
+    }
 }
