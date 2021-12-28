@@ -18,7 +18,7 @@ public class Producto {
     private Categoria categoria;
     private double precio;
     @ManyToOne
-    private Estado estado;
+    private Receta receta;
     @ManyToOne
     private Visibilidad visibilidad;
 }

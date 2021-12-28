@@ -11,11 +11,13 @@ public class Personalizacion {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
-    private Categoria categoria;
+    private Cliente cliente;
     private String nombre;
     private String descripcion;
     private String urlimg;
+    private double precio;
+    @ManyToOne
+    private Categoria categoria;
     @ManyToOne
     private Visibilidad visibilidad;
-    private double precio;
 }

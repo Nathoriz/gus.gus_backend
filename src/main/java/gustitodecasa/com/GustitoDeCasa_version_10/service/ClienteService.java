@@ -19,23 +19,15 @@ public class ClienteService {
     private ClienteRepository clienteRepository;
 
     public Cliente Registrar( Cliente cliente ){
-        if( cliente.getNombreCompleto() == null ) throw new BadRequest( "Ingrese su nombre completo." );
-        if( cliente.getNombreCompleto().isEmpty() ) throw new BadRequest( "Ingrese su nombre completo." );
-        cliente.setNombreCompleto(cliente.getNombreCompleto() );
+        if( cliente.getNombre() == null || cliente.getNombre().isEmpty() ) throw new BadRequest( "Ingrese su nombre." );
+        cliente.setNombre(cliente.getNombre() );
 
-        if( cliente.getDireccion() == null ) throw new BadRequest( "Ingrese su dirección." );
-        if( cliente.getDireccion().isEmpty() ) throw new BadRequest( "Ingrese su dirección." );
-        cliente.setDireccion( cliente.getDireccion() );
+        if( cliente.getApellido() == null  || cliente.getApellido().isEmpty() ) throw new BadRequest( "Ingrese su apellido." );
+        cliente.setApellido( cliente.getApellido() );
 
-        if( cliente.getDistrito() == null ) throw new BadRequest( "Ingrese su dirección." );
-        cliente.setDistrito( cliente.getDistrito());
-
-
-        if( cliente.getTelefono() == null ) throw new BadRequest( "Ingrese su número telefónico." );
-        if( cliente.getTelefono().isEmpty() ) throw new BadRequest( "Ingrese su número telefónico." );
+        if( cliente.getTelefono() == null || cliente.getTelefono().isEmpty()) throw new BadRequest( "Ingrese su número telefónico." );
         else {
-            if( cliente.getTelefono().length() < 9 ) throw new BadRequest( "Ingrese correctamente su número." );
-            if( cliente.getTelefono().length() > 9 ) throw new BadRequest( "Ingrese correctamente su número." );
+            if( cliente.getTelefono().length() < 9 || cliente.getTelefono().length() > 9) throw new BadRequest( "Ingrese correctamente su número." );
             Cliente telefeno = clienteRepository.findByTelefono( cliente.getTelefono() );
             if( telefeno != null ) throw new BadRequest( "El número ya está registrado en otra cuenta." );
             cliente.setTelefono( cliente.getTelefono() );
@@ -50,24 +42,17 @@ public class ClienteService {
     public Cliente Update( Cliente Ncliente ){
         Cliente cliente = clienteRepository.findClienteById( Ncliente.getId() );
 
-        if( Ncliente.getNombreCompleto().isEmpty() || Ncliente.getNombreCompleto() == null )
-            throw new BadRequest( "Ingrese su nuevo nombre Completo." );
-        cliente.setNombreCompleto( Ncliente.getNombreCompleto() );
+        if( Ncliente.getNombre().isEmpty() || Ncliente.getNombre() == null ) throw new BadRequest( "Ingrese su nuevo nombre." );
+        cliente.setNombre( Ncliente.getNombre());
 
-        if( Ncliente.getTelefono().isEmpty() || Ncliente.getTelefono() == null )
-            throw new BadRequest( "Ingrese su nuevo número telefónico." );
+        if( Ncliente.getApellido().isEmpty() || Ncliente.getApellido() == null ) throw new BadRequest( "Ingrese su nuevo apellido." );
+        cliente.setApellido( Ncliente.getApellido());
+
+        if( Ncliente.getTelefono().isEmpty() || Ncliente.getTelefono() == null ) throw new BadRequest( "Ingrese su nuevo número telefónico." );
         else{
-            if( Ncliente.getTelefono().length() < 9 ) throw new BadRequest( "Ingrese correctamente su número." );
-            if( Ncliente.getTelefono().length() > 9 ) throw new BadRequest( "Ingrese correctamente su número." );
+            if( Ncliente.getTelefono().length() < 9 || Ncliente.getTelefono().length() > 9 ) throw new BadRequest( "Ingrese correctamente su número." );
             cliente.setTelefono( Ncliente.getTelefono() );
         }
-
-        if( Ncliente.getDireccion().isEmpty() || Ncliente.getDireccion() == null )
-            throw new BadRequest( "Ingrese su nueva dirección" );
-        cliente.setDireccion( Ncliente.getDireccion() );
-
-        if( cliente.getDistrito() == null ) throw new BadRequest( "Ingrese su Distrito." );
-        cliente.setDistrito( Ncliente.getDistrito());
 
         return clienteRepository.save( cliente );
     }

@@ -10,9 +10,7 @@ public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nombreCompleto;
-    private String direccion;
+    private String nombre;
+    private String apellido;
     private String telefono;
-    @ManyToOne
-    private Distrito distrito;
 }

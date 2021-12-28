@@ -11,11 +11,5 @@ public class Insumo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
-    @ManyToOne
-    private Proveedor proveedor;
-    private String tipoUnidad;
-    private double  costoPorUnidad;
-    private double costoPorMayor;
-    private int cantUnidad;
-    private int cantMayor;
+    private String img;
 }

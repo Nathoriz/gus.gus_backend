@@ -12,9 +12,9 @@ public class Pedido {
     private Long id;
     @ManyToOne
     private Cliente cliente;
-    @OneToOne
-    private Entrega entrega;
-    private String fechaCreación;
+    private String fechaPedido;
+    private String cumpleaniero;
+    private String observacion;
     @ManyToOne
     private Estado estado;
 }

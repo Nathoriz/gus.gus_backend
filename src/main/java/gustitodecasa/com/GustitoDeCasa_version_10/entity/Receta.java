@@ -9,11 +9,10 @@ import javax.persistence.Id;
 
 @Entity
 @Data
-public class PlantillaProduccion {
+public class Receta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nombre;
     private String descripcion;
     private double tiempoProduccion;
     private double costoProduccion;
