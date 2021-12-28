@@ -16,17 +16,8 @@ public class ProductoService {
 
     @Autowired
     private ProductoRespository productoRespository;
-
     @Autowired
-    private ProductoAlturaRepository productoAlturaRepository;
-    @Autowired
-    private ProductoCubiertaRepository productoCubiertaRepository;
-    @Autowired
-    private ProductoDiametroRepository productoDiametroRepository;
-    @Autowired
-    private ProductoRellenoRepository productoRellenoRepository;
-    @Autowired
-    private ProductoSaborRepository productoSaborRepository;
+    private RecetaRepository recetaRepository;
 
     @Autowired
     private AlturaRepository alturaRepository;
@@ -38,6 +29,17 @@ public class ProductoService {
     private RellenoRepository rellenoRepository;
     @Autowired
     private SaborRepository saborRepository;
+
+    @Autowired
+    private ProductoAlturaRepository productoAlturaRepository;
+    @Autowired
+    private ProductoCubiertaRepository productoCubiertaRepository;
+    @Autowired
+    private ProductoDiametroRepository productoDiametroRepository;
+    @Autowired
+    private ProductoRellenoRepository productoRellenoRepository;
+    @Autowired
+    private ProductoSaborRepository productoSaborRepository;
 
 
     public List<Producto> ListarProductos(){
