@@ -2,7 +2,9 @@ package gustitodecasa.com.GustitoDeCasa_version_10.service;
 
 import gustitodecasa.com.GustitoDeCasa_version_10.config.Error.exceptions.BadRequest;
 import gustitodecasa.com.GustitoDeCasa_version_10.entity.Noticias;
+import gustitodecasa.com.GustitoDeCasa_version_10.entity.Visibilidad;
 import gustitodecasa.com.GustitoDeCasa_version_10.repository.NoticiaRepository;
+import gustitodecasa.com.GustitoDeCasa_version_10.repository.VisibilidadRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,9 @@ public class NoticiasService {
     @Autowired
     private NoticiaRepository repository;
 
+    @Autowired
+    private VisibilidadRepository visibilidadRepository;
+
     public List<Noticias> listar(){return repository.findAll();}
 
     public Noticias guardar(Noticias noticias){
@@ -29,8 +34,10 @@ public class NoticiasService {
         if(noticias.getObservacion().isEmpty())throw new BadRequest("Ingrese descripción");
         noticias.setObservacion(noticias.getObservacion());
 
-
-
+        if( noticias.getVisibilidad() == null ){
+            Visibilidad visibilidad = visibilidadRepository.findVisibilidadById( 1L );
+            noticias.setVisibilidad( visibilidad );
+        }
         return repository.save(noticias);
     }
 
