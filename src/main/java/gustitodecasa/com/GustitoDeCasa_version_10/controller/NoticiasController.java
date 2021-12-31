@@ -31,4 +31,9 @@ public class NoticiasController {
 
     @DeleteMapping("/eliminar/{id}")
     public void eliminar(@PathVariable Long id){ service.eliminar(id);}
+
+    @GetMapping( "/visibilidad" )
+    public ResponseEntity<?> FindNoticiabyVisibilidad( Boolean aBoolean ){
+        return ResponseEntity.status( HttpStatus.OK ).body( service.listaVisible( aBoolean ) );
+    }
 }

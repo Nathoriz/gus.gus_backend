@@ -57,4 +57,8 @@ public class NoticiasService {
     }
 
     public void eliminar(Long id){ repository.deleteById(id);}
+
+    public List<Noticias> listaVisible( Boolean aBoolean ){
+        return repository.findNoticiasByVisibilidad_Visible( aBoolean );
+    }
 }
