@@ -34,24 +34,25 @@ public class NoticiasService {
         if(noticias.getObservacion().isEmpty())throw new BadRequest("Ingrese descripción");
         noticias.setObservacion(noticias.getObservacion());
 
-        if( noticias.getVisibilidad() == null ){
-            Visibilidad visibilidad = visibilidadRepository.findVisibilidadById( 1L );
-            noticias.setVisibilidad( visibilidad );
-        }
+        if( noticias.getVisibilidad() == null ) throw new BadRequest( "Ingrese visibilidad" );
+        noticias.setVisibilidad( noticias.getVisibilidad() );
+
         return repository.save(noticias);
     }
 
     public ResponseEntity<?> actualizar(Noticias noticias){
+        Map<String, String> message = new HashMap<>();
         Noticias object = repository.findById(noticias.getId()).orElse(null);
         if(!object.equals(null)){
             object.setNombre(noticias.getNombre());
             object.setImgurl(noticias.getImgurl());
             object.setObservacion(noticias.getObservacion());
+            object.setVisibilidad(noticias.getVisibilidad() );
 
-            repository.save(noticias);
+            repository.save(object);
+            message.put("Mensaje","Ok");
         }
-        Map<String, String> message = new HashMap<>();
-        message.put("Mensaje","Ok");
+
         return new ResponseEntity<>(message, HttpStatus.OK);
     }
 

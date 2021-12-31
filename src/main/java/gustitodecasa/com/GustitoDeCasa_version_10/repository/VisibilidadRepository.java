@@ -5,4 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface VisibilidadRepository extends JpaRepository<Visibilidad, Long> {
     Visibilidad findVisibilidadById( Long id);
+    Visibilidad findVisibilidadByVisible( Boolean aBoolean );
 }
