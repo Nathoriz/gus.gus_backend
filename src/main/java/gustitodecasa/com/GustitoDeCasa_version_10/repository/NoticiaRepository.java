@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface NoticiaRepository extends JpaRepository<Noticias,Long> {
     List<Noticias> findNoticiasByVisibilidad_Visible( Boolean aBoolean );
+    List<Noticias> findAllByNombreContainingIgnoreCase( String nombre );
 }

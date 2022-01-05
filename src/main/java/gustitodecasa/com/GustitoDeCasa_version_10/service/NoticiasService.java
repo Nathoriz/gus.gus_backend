@@ -1,6 +1,7 @@
 package gustitodecasa.com.GustitoDeCasa_version_10.service;
 
 import gustitodecasa.com.GustitoDeCasa_version_10.config.Error.exceptions.BadRequest;
+import gustitodecasa.com.GustitoDeCasa_version_10.config.Error.exceptions.NotFound;
 import gustitodecasa.com.GustitoDeCasa_version_10.entity.Noticias;
 import gustitodecasa.com.GustitoDeCasa_version_10.entity.Visibilidad;
 import gustitodecasa.com.GustitoDeCasa_version_10.repository.NoticiaRepository;
@@ -60,5 +61,11 @@ public class NoticiasService {
 
     public List<Noticias> listaVisible( Boolean aBoolean ){
         return repository.findNoticiasByVisibilidad_Visible( aBoolean );
+    }
+
+    public List<Noticias> filtroNoticia( String nombre ){
+        List<Noticias> lista = repository.findAllByNombreContainingIgnoreCase( nombre );
+        if( lista.isEmpty() ) throw new NotFound( "404" );
+        return lista;
     }
 }

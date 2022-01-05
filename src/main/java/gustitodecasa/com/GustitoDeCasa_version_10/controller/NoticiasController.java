@@ -36,4 +36,9 @@ public class NoticiasController {
     public ResponseEntity<?> FindNoticiabyVisibilidad( Boolean aBoolean ){
         return ResponseEntity.status( HttpStatus.OK ).body( service.listaVisible( aBoolean ) );
     }
+
+    @GetMapping( "/filtro" )
+    public ResponseEntity<?> filtroNoticias( String nombre ){
+        return ResponseEntity.status( HttpStatus.OK ).body( service.filtroNoticia( nombre ) );
+    }
 }
