@@ -13,8 +13,10 @@ public class Pedido {
     @ManyToOne
     private Cliente cliente;
     private String fechaPedido;
-    private String cumpleaniero;
-    private String observacion;
+    @ManyToOne
+    private Entrega entrega;
+    @ManyToOne
+    private Detalle detalle;
     @ManyToOne
     private Estado estado;
 }

@@ -10,8 +10,6 @@ public class Entrega {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne
-    private Pedido pedido;
     private String fecha;
     private String hora;
     @ManyToOne
