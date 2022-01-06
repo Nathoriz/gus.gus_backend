@@ -30,9 +30,6 @@ public class EntregaService {
     }
 
     public Entrega Guardar(Entrega entrega){
-        Pedido pedido = pedidoRepository.findById(entrega.getPedido().getId()).orElse(null);
-        if(pedido.equals(null) || pedido == null) throw new BadRequest("Ingrese pedido");
-
         if(entrega.getFecha().isEmpty() && entrega.getHora().isEmpty()) throw new BadRequest("Ingrese la Fecha y Hora");
         if(entrega.getHora().isEmpty() || entrega.getFecha().isEmpty()){
             if(entrega.getHora().isEmpty()){
@@ -45,8 +42,9 @@ public class EntregaService {
         if( entrega.getDistrito() == null || entrega.getDistrito().getId() == 0 ) throw new BadRequest("Seleccione un distrito");
         Distrito distrito = distritoRepository.findById(entrega.getDistrito().getId()).orElse(null);
         if(distrito.equals(null) || distrito == null) throw new BadRequest("El distrito no existe");
+        if( entrega.getDireccion().isEmpty() || entrega.getDireccion() == null ) throw new BadRequest("Ingrese una dirección");
 
-        entrega.setPedido(entrega.getPedido());
+        entrega.setDireccion(entrega.getDireccion());
         entrega.setFecha(entrega.getFecha());
         entrega.setHora(entrega.getHora());
         entrega.setDistrito(entrega.getDistrito());
@@ -56,16 +54,13 @@ public class EntregaService {
 
     public ResponseEntity<?> Actualizar(Entrega entrega){
         Entrega entrega1 = entregaRepository.findById(entrega.getId()).orElse(null);
-        Pedido pedido = pedidoRepository.findById(entrega.getPedido().getId()).orElse(null);
-        if(pedido.equals(null) || pedido == null) throw new BadRequest("El pedido no existe");
-        entrega1.setPedido(entrega.getPedido());
-
         entrega1.setFecha(entrega.getFecha());
         entrega1.setHora(entrega.getHora());
 
         Distrito distrito = distritoRepository.findById(entrega.getDistrito().getId()).orElse(null);
         if(distrito.equals(null) || distrito == null) throw new BadRequest("El distrito no existe");
         entrega1.setDistrito(entrega.getDistrito());
+        entrega1.setDireccion( entrega.getDireccion() );
 
         entregaRepository.save(entrega1);
 
