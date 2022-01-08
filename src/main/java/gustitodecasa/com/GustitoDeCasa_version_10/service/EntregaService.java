@@ -22,34 +22,31 @@ public class EntregaService {
     private EntregaRepository entregaRepository;
     @Autowired
     private DistritoRepository distritoRepository;
-    @Autowired
-    private PedidoRepository pedidoRepository;
+
 
     public List<Entrega> listarEntrega(){
         return entregaRepository.findAll();
     }
 
     public Entrega Guardar(Entrega entrega){
-        if(entrega.getFecha().isEmpty() && entrega.getHora().isEmpty()) throw new BadRequest("Ingrese la Fecha y Hora");
-        if(entrega.getHora().isEmpty() || entrega.getFecha().isEmpty()){
-            if(entrega.getHora().isEmpty()){
-                throw new BadRequest("Ingrese la hora");
-            }else {
-                throw new BadRequest("Ingrese la fecha");
-            }
+        if( entrega.getDireccion().isEmpty() || entrega.getDireccion() == null ) throw new BadRequest("Ingrese su dirección.");
+        entrega.setDireccion( entrega.getDireccion() );
+
+        if( entrega.getFecha().isEmpty() || entrega.getFecha() == null ) throw new BadRequest("Ingrese una fecha.");
+        entrega.setFecha( entrega.getFecha() );
+
+        if( entrega.getHora().isEmpty() || entrega.getHora() == null ) throw new BadRequest( "Ingrese la hora." );
+        entrega.setHora( entrega.getHora() );
+
+        Distrito distri = distritoRepository.findDistritoByNombre( entrega.getDistrito().getNombre() );
+        if( distri != null ){
+            entrega.setDistrito( distri );
+        }else {
+            Distrito distrito = distritoRepository.findDistritoById( 1L );
+            entrega.setDistrito( distrito );
         }
 
-        if( entrega.getDistrito() == null || entrega.getDistrito().getId() == 0 ) throw new BadRequest("Seleccione un distrito");
-        Distrito distrito = distritoRepository.findById(entrega.getDistrito().getId()).orElse(null);
-        if(distrito.equals(null) || distrito == null) throw new BadRequest("El distrito no existe");
-        if( entrega.getDireccion().isEmpty() || entrega.getDireccion() == null ) throw new BadRequest("Ingrese una dirección");
-
-        entrega.setDireccion(entrega.getDireccion());
-        entrega.setFecha(entrega.getFecha());
-        entrega.setHora(entrega.getHora());
-        entrega.setDistrito(entrega.getDistrito());
-
-        return entregaRepository.save(entrega);
+        return entregaRepository.save( entrega );
     }
 
     public ResponseEntity<?> Actualizar(Entrega entrega){

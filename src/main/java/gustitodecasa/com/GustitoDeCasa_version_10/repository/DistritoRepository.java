@@ -5,4 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface DistritoRepository extends JpaRepository<Distrito,Long> {
     public Distrito findDistritoByNombre( String nombre );
+    Distrito findDistritoById( Long id );
 }
