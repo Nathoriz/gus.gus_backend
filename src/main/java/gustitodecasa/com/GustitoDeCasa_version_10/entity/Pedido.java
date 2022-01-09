@@ -16,7 +16,6 @@ public class Pedido {
     @ManyToOne
     private Entrega entrega;
     @ManyToOne
-    private Detalle detalle;
-    @ManyToOne
     private Estado estado;
+    private Double monto;
 }
