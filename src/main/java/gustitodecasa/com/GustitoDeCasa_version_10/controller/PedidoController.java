@@ -23,6 +23,11 @@ public class PedidoController {
         return ResponseEntity.status(HttpStatus.OK).body(service.buscar(id));
     }
 
+    @GetMapping("/cliente/{id}")
+    public ResponseEntity<?> listarPorClienteID(@PathVariable("id") Long id){
+        return ResponseEntity.status(HttpStatus.OK).body(service.listarPorClienteID(id));
+    }
+
     @PostMapping( "/registrar" )
     public ResponseEntity<?> guardarPedido(@RequestBody Pedido pedido){
         return ResponseEntity.status(HttpStatus.OK).body(service.guardar(pedido));

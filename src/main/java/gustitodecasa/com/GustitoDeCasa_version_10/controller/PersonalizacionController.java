@@ -18,6 +18,11 @@ public class PersonalizacionController {
         return ResponseEntity.status(HttpStatus.OK).body(service.listar());
     }
 
+    @GetMapping("/cliente/{id}")
+    public ResponseEntity<?> listarPorClienteID(@PathVariable("id") Long id){
+        return ResponseEntity.status(HttpStatus.OK).body(service.lisatarPorClienteID(id));
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<?> buscarPorID(@PathVariable("id") Long id){
         return ResponseEntity.status(HttpStatus.OK).body(service.buscar(id));

@@ -33,6 +33,12 @@ public class PedidoService {
 
     public List<Pedido> listar(){return repository.findAll();}
 
+    public List<Pedido> listarPorClienteID(Long id) {
+        Cliente cliente = clienteRepository.findClienteById(id);
+        if(cliente!=null) return repository.findAllByCliente_Id(cliente.getId());
+        else throw new BadRequest("Cliente no existe");
+       }
+
     public Pedido guardar(Pedido pedido){
         Cliente cliente = clienteRepository.findById(pedido.getCliente().getId()).orElse(null);
         if(cliente != null) pedido.setCliente(cliente);

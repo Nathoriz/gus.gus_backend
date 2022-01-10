@@ -27,26 +27,21 @@ public class PersonalizacionService {
     @Autowired
     private VisibilidadRepository visibilidadRepository;
 
-
-//    private Cliente cliente;
-//    private String nombre;
-//    private String descripcion;
-//    private String urlimg;
-//    private double precio;
-//    @ManyToOne
-//    private Categoria categoria;
-//    @ManyToOne
-//    private Visibilidad visibilidad;
-
     public Personalizacion buscar(Long id){ return repository.findPersonalizacionById(id);}
 
     public List<Personalizacion> listar(){return repository.findAll();}
+
+    public List<Personalizacion> lisatarPorClienteID(Long id) {
+        Cliente cliente = clienteRepository.findClienteById(id);
+        if(cliente!=null) return repository.findAllByCliente_Id(cliente.getId());
+        else throw new BadRequest("Cliente no existe");
+    }
 
     public Personalizacion guardar(Personalizacion personalizacion){
         Cliente cliente = clienteRepository.findClienteById(personalizacion.getCliente().getId());
         if(cliente!=null) personalizacion.setCliente(cliente);
         else throw new BadRequest("Ingrese cliente");
-        
+
         personalizacion.setNombre(personalizacion.getNombre());
         personalizacion.setDescripcion(personalizacion.getDescripcion());
         personalizacion.setUrlimg(personalizacion.getUrlimg());
