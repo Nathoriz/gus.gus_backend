@@ -21,7 +21,7 @@ public class DetalleService {
     @Autowired
     private PedidoRepository pedidoRepository;
 
-    public Detalle buscar(Long id){return repository.findById(id).orElse(null);}
+    public Detalle buscar(Long id){return repository.findDetalleById(id);}
 
     public List<Detalle> listar(){
         return repository.findAll();

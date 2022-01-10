@@ -63,6 +63,7 @@ public class PedidoService {
             object.setFechaPedido(pedido.getFechaPedido());
             object.setEntrega(pedido.getEntrega());
             object.setEstado(pedido.getEstado());
+            object.setMonto(pedido.getMonto());
             repository.save(object);
             message.put("Mensaje","Ok");
             return new ResponseEntity<>(message, HttpStatus.OK);

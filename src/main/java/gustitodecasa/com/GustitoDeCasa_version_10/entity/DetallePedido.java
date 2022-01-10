@@ -12,9 +12,11 @@ public class DetallePedido {
     private Long id;
     @ManyToOne
     private Pedido pedido;
-    @ManyToOne
+    @ManyToOne(optional = true)
+    @JoinColumn(nullable = true)
     private Producto producto;
-    @ManyToOne
+    @ManyToOne(optional = true)
+    @JoinColumn(nullable = true)
     private Personalizacion personalizacion;
     private int cantidad;
     private double subtotal;
