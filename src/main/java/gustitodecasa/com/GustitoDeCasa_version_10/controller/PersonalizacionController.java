@@ -20,7 +20,7 @@ public class PersonalizacionController {
 
     @GetMapping("/cliente/{id}")
     public ResponseEntity<?> listarPorClienteID(@PathVariable("id") Long id){
-        return ResponseEntity.status(HttpStatus.OK).body(service.lisatarPorClienteID(id));
+        return ResponseEntity.status(HttpStatus.OK).body(service.listarPorClienteID(id));
     }
 
     @GetMapping("/{id}")

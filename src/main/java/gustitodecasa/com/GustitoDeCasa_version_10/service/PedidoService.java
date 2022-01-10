@@ -1,10 +1,7 @@
 package gustitodecasa.com.GustitoDeCasa_version_10.service;
 
 import gustitodecasa.com.GustitoDeCasa_version_10.config.Error.exceptions.BadRequest;
-import gustitodecasa.com.GustitoDeCasa_version_10.entity.Cliente;
-import gustitodecasa.com.GustitoDeCasa_version_10.entity.Entrega;
-import gustitodecasa.com.GustitoDeCasa_version_10.entity.Estado;
-import gustitodecasa.com.GustitoDeCasa_version_10.entity.Pedido;
+import gustitodecasa.com.GustitoDeCasa_version_10.entity.*;
 import gustitodecasa.com.GustitoDeCasa_version_10.repository.ClienteRepository;
 import gustitodecasa.com.GustitoDeCasa_version_10.repository.EntregaRepository;
 import gustitodecasa.com.GustitoDeCasa_version_10.repository.EstadoRepository;
@@ -37,7 +34,13 @@ public class PedidoService {
         Cliente cliente = clienteRepository.findClienteById(id);
         if(cliente!=null) return repository.findAllByCliente_Id(cliente.getId());
         else throw new BadRequest("Cliente no existe");
-       }
+    }
+
+    public List<Pedido> listarPorEstado(String estadonombre){
+        Estado estado = estadoRepository.findEstadoByNombre(estadonombre);
+        if(estado!=null) return repository.findAllByEstado_Nombre(estado.getNombre());
+        else throw new BadRequest("Estado no existe");
+    }
 
     public Pedido guardar(Pedido pedido){
         Cliente cliente = clienteRepository.findById(pedido.getCliente().getId()).orElse(null);

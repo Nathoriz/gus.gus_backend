@@ -28,6 +28,11 @@ public class PedidoController {
         return ResponseEntity.status(HttpStatus.OK).body(service.listarPorClienteID(id));
     }
 
+    @GetMapping("/estado/{nombre}")
+    public ResponseEntity<?> listarPorEstado(@PathVariable("nombre") String nombre){
+        return ResponseEntity.status(HttpStatus.OK).body(service.listarPorEstado(nombre));
+    }
+
     @PostMapping( "/registrar" )
     public ResponseEntity<?> guardarPedido(@RequestBody Pedido pedido){
         return ResponseEntity.status(HttpStatus.OK).body(service.guardar(pedido));

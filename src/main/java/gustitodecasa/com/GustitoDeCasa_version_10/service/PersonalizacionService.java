@@ -31,7 +31,7 @@ public class PersonalizacionService {
 
     public List<Personalizacion> listar(){return repository.findAll();}
 
-    public List<Personalizacion> lisatarPorClienteID(Long id) {
+    public List<Personalizacion> listarPorClienteID(Long id) {
         Cliente cliente = clienteRepository.findClienteById(id);
         if(cliente!=null) return repository.findAllByCliente_Id(cliente.getId());
         else throw new BadRequest("Cliente no existe");
