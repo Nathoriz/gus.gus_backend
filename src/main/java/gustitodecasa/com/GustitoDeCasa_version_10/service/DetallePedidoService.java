@@ -85,17 +85,6 @@ public class DetallePedidoService {
                 object.setProducto(null);
             }
             else  throw new BadRequest("Surgio un problema con la actualización de producto o personalización");
-//            Personalizacion personalizacion = personalizacionRepository.findById(object.getPersonalizacion().getId()).orElse(null);
-//            Producto producto = productoRespository.findById(object.getProducto().getId()).orElse(null);
-//
-//            if (personalizacion != null) {
-//                object.setPersonalizacion(personalizacion);
-//                object.setProducto(null);
-//            }
-//            else if (producto != null) {
-//                object.setProducto(producto);
-//                object.setPersonalizacion(null);
-//            }
 
             object.setCantidad(detallePedido.getCantidad());
             if(object.getSubtotal() != 0 )  object.setSubtotal(detallePedido.getSubtotal());
