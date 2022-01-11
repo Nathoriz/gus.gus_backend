@@ -14,13 +14,11 @@ public class PersonalizacionPiso {
     private Personalizacion personalizacion;
     @ManyToOne
     private Piso piso;
-    @OneToOne
+    @ManyToOne
     private Sabor sabor;
-    @OneToOne
+    @ManyToOne
     private Relleno relleno;
-    @OneToOne
+    @ManyToOne
     private Diametro diametro;
-    @OneToOne
-    private Cubierta cubierta;
     private double precio;
 }

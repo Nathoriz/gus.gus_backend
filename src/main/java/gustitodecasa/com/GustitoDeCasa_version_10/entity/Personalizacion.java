@@ -17,6 +17,8 @@ public class Personalizacion {
     private String urlimg;
     private double precio;
     @ManyToOne
+    private Cubierta cubierta;
+    @ManyToOne
     private Categoria categoria;
     @ManyToOne
     private Visibilidad visibilidad;

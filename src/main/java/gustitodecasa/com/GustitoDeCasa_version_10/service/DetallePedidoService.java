@@ -33,6 +33,8 @@ public class DetallePedidoService {
 
     public List<DetallePedido> listar() { return  repository.findAll();}
 
+    public List<DetallePedido> listarPorPedidoID(Long id){return repository.findAllByPedido_Id(id);}
+
     public DetallePedido guardar(DetallePedido detallePedido){
         Pedido pedido = pedidoRepository.findById(detallePedido.getPedido().getId()).orElse(null);
 

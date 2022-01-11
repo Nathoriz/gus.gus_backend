@@ -89,7 +89,6 @@ public class PedidoService {
             message.put("Mensaje","El pedido no existe");
             return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
         }
-
         repository.deleteById(id);
         message.put("Mensaje","Eliminado");
         return new ResponseEntity<>(message, HttpStatus.OK);

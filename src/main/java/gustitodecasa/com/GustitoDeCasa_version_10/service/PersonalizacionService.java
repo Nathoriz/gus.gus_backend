@@ -2,10 +2,7 @@ package gustitodecasa.com.GustitoDeCasa_version_10.service;
 
 import gustitodecasa.com.GustitoDeCasa_version_10.config.Error.exceptions.BadRequest;
 import gustitodecasa.com.GustitoDeCasa_version_10.entity.*;
-import gustitodecasa.com.GustitoDeCasa_version_10.repository.CategoriaRepository;
-import gustitodecasa.com.GustitoDeCasa_version_10.repository.ClienteRepository;
-import gustitodecasa.com.GustitoDeCasa_version_10.repository.PersonalizacionRepository;
-import gustitodecasa.com.GustitoDeCasa_version_10.repository.VisibilidadRepository;
+import gustitodecasa.com.GustitoDeCasa_version_10.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +19,8 @@ public class PersonalizacionService {
     private PersonalizacionRepository repository;
     @Autowired
     private ClienteRepository clienteRepository;
+    @Autowired
+    private CubiertaRepository cubiertaRepository;
     @Autowired
     private CategoriaRepository categoriaRepository;
     @Autowired
@@ -47,6 +46,10 @@ public class PersonalizacionService {
         personalizacion.setUrlimg(personalizacion.getUrlimg());
         personalizacion.setPrecio(personalizacion.getPrecio());
 
+        Cubierta cubierta = cubiertaRepository.findById(personalizacion.getCubierta().getId()).orElse(null);
+        if(cubierta!=null) personalizacion.setCubierta(cubierta);
+        else throw new BadRequest("Ingrese cubierta");
+
         Categoria categoria = categoriaRepository.findCategoriaByNombre("Personalizacion").orElse(null);
         if(categoria.getNombre().equals("Personalizacion")) personalizacion.setCategoria(categoria);
         else if(categoria.equals(null)) personalizacion.setCategoria(categoria);
@@ -68,6 +71,7 @@ public class PersonalizacionService {
             object.setDescripcion(personalizacion.getDescripcion());
             object.setUrlimg(personalizacion.getUrlimg());
             object.setPrecio(personalizacion.getPrecio());
+            object.setCubierta(personalizacion.getCubierta());
             object.setCategoria(personalizacion.getCategoria());
             object.setVisibilidad(personalizacion.getVisibilidad());
             repository.save(object);
