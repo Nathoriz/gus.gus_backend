@@ -22,6 +22,7 @@ public class DistritoService {
     public Distrito guardar(Distrito distrito){
         if(distrito.getNombre().isEmpty())throw new BadRequest("Ingrese descripción");
         distrito.setNombre(distrito.getNombre());
+        distrito.setPrecio(distrito.getPrecio());
         return distritoRepository.save(distrito);
     }
 
@@ -29,6 +30,7 @@ public class DistritoService {
         Distrito object = distritoRepository.findById(distrito.getId()).orElse(null);
         if(!object.equals(null)){
             object.setNombre(distrito.getNombre());
+            object.setPrecio( distrito.getPrecio() );
             distritoRepository.save(distrito);
         }
         Map<String, String> message = new HashMap<>();

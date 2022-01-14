@@ -142,7 +142,7 @@ public class UsuarioService implements UserDetailsService {
         Map<String, Object> response = new HashMap<>();
         if( passwordDTO.getId() == null ) throw new BadRequest( "Error." );
         if( passwordDTO.getPassword().isEmpty() || passwordDTO.getPassword() == null ) throw new BadRequest( "Ingrese su contraseña." );
-        Usuario usuario = usuarioRepository.findUsuarioById( passwordDTO.getId() );
+        Usuario usuario = usuarioRepository.findUsuarioByClienteId( passwordDTO.getId() );
         if( customPasswordEncoder.matches( passwordDTO.getPassword(), usuario.getContrasenia() ) ){
             response.put( "estado", true );
             response.put( "message", "Validación completada "+ usuario.getUsuario() );
@@ -173,7 +173,7 @@ public class UsuarioService implements UserDetailsService {
         if( !nuevoPasswordDTO.getPassword().equals( nuevoPasswordDTO.getConfirmpassword()) )
             throw new BadRequest( "Las contraseñas no coinciden." );
         else {
-            Usuario usuario = usuarioRepository.findUsuarioById( nuevoPasswordDTO.getId() );
+            Usuario usuario = usuarioRepository.findUsuarioByClienteId( nuevoPasswordDTO.getId() );
             usuario.setContrasenia( customPasswordEncoder.encode( nuevoPasswordDTO.getPassword() ) );
             usuarioRepository.save( usuario );
             response.put( "estado", true );

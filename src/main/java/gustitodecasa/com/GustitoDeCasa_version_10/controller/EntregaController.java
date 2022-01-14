@@ -29,4 +29,9 @@ public class EntregaController {
         return entregaService.Actualizar(entrega);
     }
 
+    @GetMapping( "/{id}" )
+    public ResponseEntity<?> FindEntregaById( @PathVariable( "id" ) Long id ){
+        return  ResponseEntity.status( HttpStatus.OK ).body( entregaService.findById( id ) );
+    }
+
 }

@@ -15,4 +15,5 @@ public class Entrega {
     @ManyToOne
     private Distrito distrito;
     private String direccion;
+    private Boolean envio;
 }

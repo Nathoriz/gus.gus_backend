@@ -35,6 +35,7 @@ public class EntregaService {
 
         if( entrega.getHora().isEmpty() || entrega.getHora() == null ) throw new BadRequest( "Ingrese la hora." );
         entrega.setHora( entrega.getHora() );
+        entrega.setEnvio( entrega.getEnvio() );
 
         Distrito distri = distritoRepository.findDistritoByNombre( entrega.getDistrito().getNombre() );
         if( distri != null ){
@@ -43,7 +44,6 @@ public class EntregaService {
             Distrito distrito = distritoRepository.findDistritoById( 1L );
             entrega.setDistrito( distrito );
         }
-
         return entregaRepository.save( entrega );
     }
 
@@ -67,5 +67,9 @@ public class EntregaService {
 
     public void Eliminar(Long id){
         entregaRepository.deleteById(id);
+    }
+
+    public Entrega findById( Long id ){
+        return entregaRepository.findEntregaById( id );
     }
 }

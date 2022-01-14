@@ -14,4 +14,5 @@ public class Distrito {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
+    private String precio;
 }
