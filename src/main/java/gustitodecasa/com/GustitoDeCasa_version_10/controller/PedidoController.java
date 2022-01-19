@@ -28,9 +28,9 @@ public class PedidoController {
         return ResponseEntity.status(HttpStatus.OK).body(service.listarPorClienteID(id));
     }
 
-    @GetMapping("/estado/{nombre}")
-    public ResponseEntity<?> listarPorEstado(@PathVariable("nombre") String nombre){
-        return ResponseEntity.status(HttpStatus.OK).body(service.listarPorEstado(nombre));
+    @GetMapping("/estado/{nombre}/{id}")
+    public ResponseEntity<?> listarPorEstado(@PathVariable("nombre") String nombre, @PathVariable("id") Long id){
+        return ResponseEntity.status(HttpStatus.OK).body(service.listarPorEstado(nombre,  id));
     }
 
     @PostMapping( "/registrar" )

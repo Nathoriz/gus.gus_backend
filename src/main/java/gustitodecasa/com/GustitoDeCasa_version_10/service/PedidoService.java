@@ -36,9 +36,9 @@ public class PedidoService {
         else throw new BadRequest("Cliente no existe");
     }
 
-    public List<Pedido> listarPorEstado(String estadonombre){
+    public List<Pedido> listarPorEstado(String estadonombre, Long id){
         Estado estado = estadoRepository.findEstadoByNombre(estadonombre);
-        if(estado!=null) return repository.findAllByEstado_Nombre(estado.getNombre());
+        if(estado!=null) return repository.findAllByEstado_NombreAndCliente_Id(estado.getNombre(), id );
         else throw new BadRequest("Estado no existe");
     }
 
