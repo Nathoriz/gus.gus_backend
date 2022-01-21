@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,7 +37,7 @@ public class PedidoService {
         else throw new BadRequest("Cliente no existe");
     }
 
-    public List<Pedido> listarPorEstado(String estadonombre, Long id){
+    public List<Pedido> listarPorClientIdAndEstadoNombre(String estadonombre, Long id){
         Estado estado = estadoRepository.findEstadoByNombre(estadonombre);
         if(estado!=null) return repository.findAllByEstado_NombreAndCliente_Id(estado.getNombre(), id );
         else throw new BadRequest("Estado no existe");
@@ -92,6 +93,10 @@ public class PedidoService {
         repository.deleteById(id);
         message.put("Mensaje","Eliminado");
         return new ResponseEntity<>(message, HttpStatus.OK);
+    }
+
+    public List<Pedido> buscarClientePedidoIdLike(Long id,String estado, String pedidoId){
+        return repository.buscarPedidoClientePorID(id,estado,pedidoId);
     }
 
 }
