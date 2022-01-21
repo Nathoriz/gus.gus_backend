@@ -35,6 +35,6 @@ public class DistritoController {
 
     @GetMapping( "/buscar" )
     public ResponseEntity<?> BuscarDistrito( String nombre ){
-        return ResponseEntity.status( HttpStatus.OK ).body( distritoService.buscarCliente( nombre ) );
+        return ResponseEntity.status( HttpStatus.OK ).body( distritoService.buscar( nombre ) );
     }
 }
