@@ -40,7 +40,7 @@ public class DistritoService {
 
     public void eliminar(Long id){ distritoRepository.deleteById(id);}
 
-    public Distrito buscarCliente( String nombre ){
+    public Distrito buscar( String nombre ){
         return distritoRepository.findDistritoByNombre( nombre );
     }
 }

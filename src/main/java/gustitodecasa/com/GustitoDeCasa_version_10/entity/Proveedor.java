@@ -9,10 +9,10 @@ import javax.persistence.Id;
 
 @Entity
 @Data
-public class Diametro {
+public class Proveedor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String descripcion;
-    private String precio;
+    private String nombre;
+    private String telefono;
 }
