@@ -6,14 +6,13 @@ import javax.persistence.*;
 
 @Entity
 @Data
-public class Monto {
+public class ProveedorInsumo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
-    private Distrito distrito;
+    private Proveedor proveedor;
     @ManyToOne
-    private Diametro diametro;
+    private Insumo insumo;
     private double precio;
-
 }

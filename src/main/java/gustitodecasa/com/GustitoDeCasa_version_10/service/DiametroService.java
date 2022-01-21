@@ -21,7 +21,9 @@ public class DiametroService {
 
     public Diametro guardar(Diametro diametro){
         if(diametro.getDescripcion().isEmpty())throw new BadRequest("Ingrese descripción");
+        if(diametro.getPrecio().isEmpty())throw new BadRequest("Ingrese precio");
         diametro.setDescripcion(diametro.getDescripcion());
+        diametro.setPrecio(diametro.getPrecio());
         return diametroRepository.save(diametro);
     }
 
@@ -29,6 +31,7 @@ public class DiametroService {
         Diametro object = diametroRepository.findById(diametro.getId()).orElse(null);
         if(!object.equals(null)){
             object.setDescripcion(diametro.getDescripcion());
+            object.setPrecio(diametro.getPrecio());
             diametroRepository.save(diametro);
         }
         Map<String, String> message = new HashMap<>();
