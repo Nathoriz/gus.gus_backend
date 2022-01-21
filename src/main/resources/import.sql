@@ -1,6 +1,12 @@
 insert into rol(tiporol) values('CLIENTE');
 insert into rol(tiporol) values('ADMIN');
 
+insert into cliente(nombre,apellido,telefono)values('Mayra','Ortega','953625235');
+insert into admin(nombre,apellido,dni)values('Alex','Pilco','71220965');
+
+insert into usuario(cliente_id,admin_id,rol_id,usuario,contrasenia)values(1,null,1,'mayra','$2a$08$Vs4wxjUYSNDlw6dKC/VeD.CeI5t2lcrZmMuXGJms.wiCBddfTtGhS')
+insert into usuario(cliente_id,admin_id,rol_id,usuario,contrasenia)values(null,1,2,'alex','$2a$08$c.21KDwm.jAhWf9Ud9pAJuzuXwGweOE.xL9mtYU0ktEU0qsMLFUO6')
+
 insert into estado ( nombre ) value('Disponible');
 insert into estado ( nombre ) value('No Disponible');
 
