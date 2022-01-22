@@ -2,6 +2,7 @@ package gustitodecasa.com.GustitoDeCasa_version_10.service;
 
 import gustitodecasa.com.GustitoDeCasa_version_10.config.Error.exceptions.BadRequest;
 import gustitodecasa.com.GustitoDeCasa_version_10.entity.Distrito;
+import gustitodecasa.com.GustitoDeCasa_version_10.entity.Sabor;
 import gustitodecasa.com.GustitoDeCasa_version_10.repository.DistritoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,7 +39,17 @@ public class DistritoService {
         return new ResponseEntity<>(message, HttpStatus.OK);
     }
 
-    public void eliminar(Long id){ distritoRepository.deleteById(id);}
+    public ResponseEntity<?> eliminar(Long id){
+        Map<String, String> message = new HashMap<>();
+        Distrito distrito = distritoRepository.findById(id).orElse(null);
+        if (distrito.equals(null)) {
+            message.put("Mensaje", "El distrito no existe");
+            return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+        }
+        distritoRepository.deleteById(id);
+        message.put("Mensaje", "Eliminado");
+        return new ResponseEntity<>(message, HttpStatus.OK);
+    }
 
     public Distrito buscar( String nombre ){
         return distritoRepository.findDistritoByNombre( nombre );

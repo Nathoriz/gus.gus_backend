@@ -1,4 +1,5 @@
 package gustitodecasa.com.GustitoDeCasa_version_10.controller;
+import gustitodecasa.com.GustitoDeCasa_version_10.entity.Relleno;
 import gustitodecasa.com.GustitoDeCasa_version_10.entity.Sabor;
 import gustitodecasa.com.GustitoDeCasa_version_10.service.SaborService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +29,13 @@ public class SaborController {
     }
 
     @DeleteMapping("/eliminar/{id}")
-    public void eliminar(@PathVariable Long id){ saborService.eliminar(id);}
+    public ResponseEntity<?> eliminar(@PathVariable Long id){ return saborService.eliminar(id);}
+
+
+    @GetMapping("/{id}")
+    public Sabor buscar(@PathVariable("id") Long id){
+        return saborService.buscar(id);
+    }
+
+
 }

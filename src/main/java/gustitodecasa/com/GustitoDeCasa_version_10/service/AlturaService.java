@@ -1,7 +1,10 @@
 package gustitodecasa.com.GustitoDeCasa_version_10.service;
 
 
+import gustitodecasa.com.GustitoDeCasa_version_10.config.Error.exceptions.BadRequest;
 import gustitodecasa.com.GustitoDeCasa_version_10.entity.Altura;
+import gustitodecasa.com.GustitoDeCasa_version_10.entity.Pedido;
+import gustitodecasa.com.GustitoDeCasa_version_10.entity.PersonalizacionPiso;
 import gustitodecasa.com.GustitoDeCasa_version_10.repository.AlturaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,28 +21,44 @@ public class AlturaService {
     @Autowired
     private AlturaRepository alturaRepository;
 
-    public List<Altura> listarTamanio(){
+    public List<Altura> listar(){
         return alturaRepository.findAll();
     }
 
-    public Altura Guardar(Altura altura){
+    public Altura guardar(Altura altura){
+        if(altura.getDescripcion().isEmpty())throw new BadRequest("Ingrese descripción");
+        if(altura.getPrecio().isEmpty())throw new BadRequest("Ingrese precio");
+        altura.setDescripcion(altura.getDescripcion());
+        altura.setPrecio(altura.getPrecio());
         return alturaRepository.save(altura);
-
     }
 
-    public ResponseEntity<?> Actualizar(Altura altura){
-        Altura altura1 = alturaRepository.findById(altura.getId()).orElse(null);
-        altura1.setDescripcion(altura.getDescripcion());
-        alturaRepository.save(altura1);
-
-        //para darle un mensaje
+    public ResponseEntity<?> actualizar(Altura altura){
+        Altura object = alturaRepository.findById(altura.getId()).orElse(null);
+        if(!object.equals(null)){
+            object.setDescripcion(altura.getDescripcion());
+            object.setPrecio(altura.getPrecio());
+            alturaRepository.save(altura);
+        }
         Map<String, String> message = new HashMap<>();
-        message.put("Mensaje","Actualizacion exitosa");
+        message.put("Mensaje","Ok");
         return new ResponseEntity<>(message, HttpStatus.OK);
     }
 
-    public void Eliminar(Long id){
+    public Altura buscar(Long id){
+        return alturaRepository.findById(id).orElse(null);
+    }
+
+    public ResponseEntity<?>  eliminar(Long id){
+        Map<String, String> message = new HashMap<>();
+        Altura altura = alturaRepository.findById(id).orElse(null);
+        if (altura.equals(null)) {
+            message.put("Mensaje", "La altura no existe");
+            return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+        }
         alturaRepository.deleteById(id);
+        message.put("Mensaje", "Eliminado");
+        return new ResponseEntity<>(message, HttpStatus.OK);
     }
 
 }

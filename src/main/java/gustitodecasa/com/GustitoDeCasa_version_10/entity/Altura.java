@@ -14,4 +14,5 @@ public class Altura {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String descripcion;
+    private String precio;
 }

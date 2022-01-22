@@ -21,10 +21,6 @@ public class PersonalizacionService {
     private ClienteRepository clienteRepository;
     @Autowired
     private CubiertaRepository cubiertaRepository;
-    @Autowired
-    private CategoriaRepository categoriaRepository;
-    @Autowired
-    private VisibilidadRepository visibilidadRepository;
 
     public Personalizacion buscar(Long id){ return repository.findPersonalizacionById(id);}
 
@@ -42,22 +38,12 @@ public class PersonalizacionService {
         else throw new BadRequest("Ingrese cliente");
 
         personalizacion.setNombre(personalizacion.getNombre());
-        personalizacion.setDescripcion(personalizacion.getDescripcion());
         personalizacion.setUrlimg(personalizacion.getUrlimg());
         personalizacion.setPrecio(personalizacion.getPrecio());
 
         Cubierta cubierta = cubiertaRepository.findById(personalizacion.getCubierta().getId()).orElse(null);
         if(cubierta!=null) personalizacion.setCubierta(cubierta);
         else throw new BadRequest("Ingrese cubierta");
-
-        Categoria categoria = categoriaRepository.findCategoriaByNombre("Personalizacion").orElse(null);
-        if(categoria.getNombre().equals("Personalizacion")) personalizacion.setCategoria(categoria);
-        else if(categoria.equals(null)) personalizacion.setCategoria(categoria);
-        else throw new BadRequest("La categoria solo puede ser Personalizacion");
-
-        Visibilidad visibilidad = visibilidadRepository.findVisibilidadByVisible(personalizacion.getVisibilidad().getVisible());
-        if(!visibilidad.equals(null)) personalizacion.setVisibilidad(visibilidad);
-        else personalizacion.setVisibilidad(visibilidadRepository.findVisibilidadByVisible(true));
 
         return repository.save(personalizacion);
     }
@@ -68,12 +54,9 @@ public class PersonalizacionService {
         if(object != null){
             object.setCliente(personalizacion.getCliente());
             object.setNombre(personalizacion.getNombre());
-            object.setDescripcion(personalizacion.getDescripcion());
             object.setUrlimg(personalizacion.getUrlimg());
             object.setPrecio(personalizacion.getPrecio());
             object.setCubierta(personalizacion.getCubierta());
-            object.setCategoria(personalizacion.getCategoria());
-            object.setVisibilidad(personalizacion.getVisibilidad());
             repository.save(object);
             message.put("Mensaje","Ok");
             return new ResponseEntity<>(message, HttpStatus.OK);

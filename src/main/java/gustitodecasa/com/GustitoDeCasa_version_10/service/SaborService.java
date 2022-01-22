@@ -1,6 +1,7 @@
 package gustitodecasa.com.GustitoDeCasa_version_10.service;
 
 import gustitodecasa.com.GustitoDeCasa_version_10.config.Error.exceptions.BadRequest;
+import gustitodecasa.com.GustitoDeCasa_version_10.entity.Altura;
 import gustitodecasa.com.GustitoDeCasa_version_10.entity.Sabor;
 import gustitodecasa.com.GustitoDeCasa_version_10.repository.SaborRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,5 +42,19 @@ public class SaborService {
         return new ResponseEntity<>(message, HttpStatus.OK);
     }
 
-    public void eliminar(Long id){ saborRepository.deleteById(id);}
+    public ResponseEntity<?>  eliminar(Long id){
+        Map<String, String> message = new HashMap<>();
+        Sabor sabor = saborRepository.findById(id).orElse(null);
+        if (sabor.equals(null)) {
+            message.put("Mensaje", "El sabor no existe");
+            return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+        }
+        saborRepository.deleteById(id);
+        message.put("Mensaje", "Eliminado");
+        return new ResponseEntity<>(message, HttpStatus.OK);
+    }
+
+    public Sabor buscar(Long id){
+        return saborRepository.findById(id).orElse(null);
+    }
 }

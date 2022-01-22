@@ -2,6 +2,7 @@ package gustitodecasa.com.GustitoDeCasa_version_10.service;
 
 import gustitodecasa.com.GustitoDeCasa_version_10.config.Error.exceptions.BadRequest;
 import gustitodecasa.com.GustitoDeCasa_version_10.entity.Diametro;
+import gustitodecasa.com.GustitoDeCasa_version_10.entity.Distrito;
 import gustitodecasa.com.GustitoDeCasa_version_10.repository.DiametroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,7 +18,7 @@ public class DiametroService {
     @Autowired
     private DiametroRepository diametroRepository;
 
-    public List<Diametro> listar(){return diametroRepository.findAll();}
+    public List<Diametro> listar(){ return diametroRepository.findAll();}
 
     public Diametro guardar(Diametro diametro){
         if(diametro.getDescripcion().isEmpty())throw new BadRequest("Ingrese descripción");
@@ -39,5 +40,19 @@ public class DiametroService {
         return new ResponseEntity<>(message, HttpStatus.OK);
     }
 
-    public void eliminar(Long id){ diametroRepository.deleteById(id);}
+    public ResponseEntity<?> eliminar(Long id){
+        Map<String, String> message = new HashMap<>();
+        Diametro diametro = diametroRepository.findById(id).orElse(null);
+        if (diametro.equals(null)) {
+            message.put("Mensaje", "El diametro no existe");
+            return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+        }
+        diametroRepository.deleteById(id);
+        message.put("Mensaje", "Eliminado");
+        return new ResponseEntity<>(message, HttpStatus.OK);
+    }
+
+    public Diametro buscar(Long id){
+        return diametroRepository.findById(id).orElse(null);
+    }
 }

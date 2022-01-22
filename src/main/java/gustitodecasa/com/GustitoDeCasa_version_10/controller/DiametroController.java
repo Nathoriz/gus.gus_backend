@@ -2,6 +2,7 @@ package gustitodecasa.com.GustitoDeCasa_version_10.controller;
 
 
 import gustitodecasa.com.GustitoDeCasa_version_10.entity.Diametro;
+import gustitodecasa.com.GustitoDeCasa_version_10.entity.Relleno;
 import gustitodecasa.com.GustitoDeCasa_version_10.service.DiametroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,11 @@ public class DiametroController {
         return ResponseEntity.status(HttpStatus.OK).body(diametroService.listar());
     }
 
+    @GetMapping("/{id}")
+    public Diametro buscar(@PathVariable("id") Long id){
+        return diametroService.buscar(id);
+    }
+
     @PostMapping("/guardar")
     public ResponseEntity<?> guardar(@RequestBody Diametro diametro){
         return ResponseEntity.status(HttpStatus.OK).body(diametroService.guardar(diametro));
@@ -30,5 +36,5 @@ public class DiametroController {
     }
 
     @DeleteMapping("/eliminar/{id}")
-    public void eliminar(@PathVariable Long id){ diametroService.eliminar(id);}
+    public ResponseEntity<?> eliminar(@PathVariable Long id){ return diametroService.eliminar(id);}
 }

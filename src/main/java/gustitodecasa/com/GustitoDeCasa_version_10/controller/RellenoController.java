@@ -30,6 +30,12 @@ public class RellenoController {
     }
 
     @DeleteMapping("/eliminar/{id}")
-    public void eliminar(@PathVariable Long id){ rellenoService.eliminar(id);}
+    public ResponseEntity<?> eliminar(@PathVariable Long id){ return rellenoService.eliminar(id);}
+
+    @GetMapping("/{id}")
+    public Relleno buscar(@PathVariable("id") Long id){
+        return rellenoService.buscar(id);
+    }
+
 
 }

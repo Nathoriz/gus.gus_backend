@@ -2,6 +2,7 @@ package gustitodecasa.com.GustitoDeCasa_version_10.service;
 
 import gustitodecasa.com.GustitoDeCasa_version_10.config.Error.exceptions.BadRequest;
 import gustitodecasa.com.GustitoDeCasa_version_10.entity.Relleno;
+import gustitodecasa.com.GustitoDeCasa_version_10.entity.Sabor;
 import gustitodecasa.com.GustitoDeCasa_version_10.repository.RellenoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -36,5 +37,19 @@ public class RellenoService {
         return new ResponseEntity<>(message, HttpStatus.OK);
     }
 
-    public void eliminar(Long id){ rellenoRepository.deleteById(id);}
+    public ResponseEntity<?> eliminar(Long id){
+        Map<String, String> message = new HashMap<>();
+        Relleno relleno = rellenoRepository.findById(id).orElse(null);
+        if (relleno.equals(null)) {
+            message.put("Mensaje", "El relleno no existe");
+            return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+        }
+        rellenoRepository.deleteById(id);
+        message.put("Mensaje", "Eliminado");
+        return new ResponseEntity<>(message, HttpStatus.OK);
+    }
+
+    public Relleno buscar(Long id){
+        return rellenoRepository.findById(id).orElse(null);
+    }
 }
