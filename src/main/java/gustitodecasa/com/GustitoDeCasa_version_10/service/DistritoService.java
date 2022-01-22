@@ -51,7 +51,11 @@ public class DistritoService {
         return new ResponseEntity<>(message, HttpStatus.OK);
     }
 
-    public Distrito buscar( String nombre ){
+    public Distrito buscarPorNombre( String nombre ){
         return distritoRepository.findDistritoByNombre( nombre );
+    }
+
+    public Distrito buscar( Long id ){
+        return distritoRepository.findById(id).orElse(null);
     }
 }
