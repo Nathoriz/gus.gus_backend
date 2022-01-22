@@ -35,8 +35,8 @@ public class PedidoController {
         return ResponseEntity.status(HttpStatus.OK).body(service.listarPorClientIdAndEstadoNombre(nombre,  id));
     }
 
-    @GetMapping("/cliente/{id}/{estado}/{pedidoid}")
-    public ResponseEntity<?> buscarPedidosClientesPorId(@PathVariable("id") Long id, @PathVariable("estado") String estado,@PathVariable String pedidoid){
+    @GetMapping("/cliente/{id}/{estado}/pedidoid")
+    public ResponseEntity<?> buscarPedidosClientesPorId(@PathVariable("id") Long id, @PathVariable("estado") String estado,String pedidoid){
         return ResponseEntity.status(HttpStatus.OK).body(service.buscarClientePedidoIdLike(id, estado,pedidoid));
     }
 

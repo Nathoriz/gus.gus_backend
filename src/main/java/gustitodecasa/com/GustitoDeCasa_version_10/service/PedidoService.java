@@ -1,6 +1,7 @@
 package gustitodecasa.com.GustitoDeCasa_version_10.service;
 
 import gustitodecasa.com.GustitoDeCasa_version_10.config.Error.exceptions.BadRequest;
+import gustitodecasa.com.GustitoDeCasa_version_10.config.Error.exceptions.NotFound;
 import gustitodecasa.com.GustitoDeCasa_version_10.entity.*;
 import gustitodecasa.com.GustitoDeCasa_version_10.repository.ClienteRepository;
 import gustitodecasa.com.GustitoDeCasa_version_10.repository.EntregaRepository;
@@ -96,7 +97,9 @@ public class PedidoService {
     }
 
     public List<Pedido> buscarClientePedidoIdLike(Long id,String estado, String pedidoId){
-        return repository.buscarPedidoClientePorID(id,estado,pedidoId);
+        List<Pedido> list = repository.buscarPedidoClientePorID(id,estado,pedidoId);
+        if( list.isEmpty() ) throw new NotFound("404");
+        return list;
     }
 
 }
