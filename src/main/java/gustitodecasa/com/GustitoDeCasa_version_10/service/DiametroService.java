@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -17,7 +18,9 @@ public class DiametroService {
     @Autowired
     private DiametroRepository diametroRepository;
 
-    public List<Diametro> listar(){return diametroRepository.findAll();}
+    public List<Diametro> listar(){
+        return diametroRepository.ListAll();
+    }
 
     public Diametro guardar(Diametro diametro){
         if(diametro.getDescripcion().isEmpty())throw new BadRequest("Ingrese descripción");

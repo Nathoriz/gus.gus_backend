@@ -15,7 +15,7 @@ public class DiametroController {
     private DiametroService diametroService;
 
     @GetMapping("/listar")
-    public ResponseEntity<?> listar(){
+    public ResponseEntity<?> listarCustom(){
         return ResponseEntity.status(HttpStatus.OK).body(diametroService.listar());
     }
 
