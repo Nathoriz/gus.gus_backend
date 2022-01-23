@@ -37,5 +37,8 @@ public class RellenoController {
         return rellenoService.buscar(id);
     }
 
-
+    @GetMapping( "/list" )
+    public ResponseEntity<?> FindByDescrip( String descripcion ){
+        return ResponseEntity.status( HttpStatus.OK ).body( rellenoService.buscarByNombre( descripcion ) );
+    }
 }

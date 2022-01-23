@@ -58,4 +58,8 @@ public class DiametroService {
     public Diametro buscar(Long id){
         return diametroRepository.findById(id).orElse(null);
     }
+
+    public Diametro FindByDiametroDescri( String descrip ){
+        return diametroRepository.findDiametroByDescripcion( descrip );
+    }
 }

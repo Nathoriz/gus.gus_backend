@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface DiametroRepository extends JpaRepository<Diametro, Long> {
+    Diametro findDiametroByDescripcion( String descrip );
 
     @Query( value = "SELECT * FROM diametro WHERE id <> '1'", nativeQuery = true )
     List<Diametro> ListAll();

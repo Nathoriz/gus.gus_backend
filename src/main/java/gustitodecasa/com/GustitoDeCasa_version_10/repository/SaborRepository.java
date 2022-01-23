@@ -8,6 +8,7 @@ import java.util.List;
 
 
 public interface SaborRepository extends JpaRepository<Sabor, Long> {
+    Sabor findSaborByNombre( String nombre );
 
     @Query( value = "SELECT * FROM sabor WHERE id <> '1'", nativeQuery = true )
     List<Sabor> ListAll();

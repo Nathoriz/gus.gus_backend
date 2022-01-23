@@ -59,4 +59,8 @@ public class SaborService {
     public Sabor buscar(Long id){
         return saborRepository.findById(id).orElse(null);
     }
+
+    public Sabor buscarByNombre( String nombre ){
+        return saborRepository.findSaborByNombre( nombre );
+    }
 }

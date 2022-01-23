@@ -37,4 +37,9 @@ public class DiametroController {
 
     @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<?> eliminar(@PathVariable Long id){ return diametroService.eliminar(id);}
+
+    @GetMapping( "/list" )
+    public ResponseEntity<?> buscarByDescrip( String descrip ){
+        return ResponseEntity.status( HttpStatus.OK ).body( diametroService.FindByDiametroDescri( descrip ) );
+    }
 }

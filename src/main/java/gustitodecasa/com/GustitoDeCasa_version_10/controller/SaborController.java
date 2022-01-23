@@ -37,5 +37,8 @@ public class SaborController {
         return saborService.buscar(id);
     }
 
-
+    @GetMapping( "/list" )
+    public ResponseEntity<?> FindBySaborNombre( String nombre ){
+        return ResponseEntity.status( HttpStatus.OK ).body( saborService.buscarByNombre( nombre ) );
+    }
 }

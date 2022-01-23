@@ -54,4 +54,8 @@ public class RellenoService {
     public Relleno buscar(Long id){
         return rellenoRepository.findById(id).orElse(null);
     }
+
+    public Relleno buscarByNombre( String nombre ){
+        return rellenoRepository.findRellenoByDescripcion( nombre );
+    }
 }
