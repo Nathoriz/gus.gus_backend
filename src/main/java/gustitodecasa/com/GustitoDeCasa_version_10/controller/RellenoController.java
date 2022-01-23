@@ -15,7 +15,7 @@ public class RellenoController {
     private RellenoService rellenoService;
 
     @GetMapping("/listar")
-    public ResponseEntity<?> listar(){
+    public ResponseEntity<?> listarCustom(){
         return ResponseEntity.status(HttpStatus.OK).body(rellenoService.listar());
     }
 

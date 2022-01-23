@@ -14,7 +14,7 @@ public class SaborController {
     private SaborService saborService;
 
     @GetMapping("/listar")
-    public ResponseEntity<?> listar(){
+    public ResponseEntity<?> listarCustom(){
         return ResponseEntity.status(HttpStatus.OK).body(saborService.listar());
     }
 

@@ -18,7 +18,9 @@ public class RellenoService {
     @Autowired
     private RellenoRepository rellenoRepository;
 
-    public List<Relleno> listar(){return rellenoRepository.findAll();}
+    public List<Relleno> listar(){
+        return rellenoRepository.ListAll();
+    }
 
     public Relleno guardar(Relleno relleno){
         if(relleno.getDescripcion().isEmpty())throw new BadRequest("Ingrese descripción");
