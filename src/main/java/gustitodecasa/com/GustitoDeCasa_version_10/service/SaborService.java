@@ -17,7 +17,9 @@ public class SaborService {
     @Autowired
     private SaborRepository saborRepository;
 
-    public List<Sabor> listar(){return saborRepository.findAll();}
+    public List<Sabor> listar(){
+        return saborRepository.ListAll();
+    }
 
     public Sabor guardar(Sabor sabor){
         if(sabor.getNombre().isEmpty() || sabor.getColor().isEmpty()){
