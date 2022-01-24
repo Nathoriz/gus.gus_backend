@@ -11,6 +11,7 @@ public class Categoria {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
+    private String imgnombre;
     private String urlimg;
     @ManyToOne
     private Visibilidad visibilidad;
