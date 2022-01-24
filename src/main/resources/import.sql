@@ -48,11 +48,11 @@ insert into sabor(nombre,color) values('Chocolate','574240');
 insert into sabor(nombre,color) values('Naranja','F2A8A4');
 insert into sabor(nombre,color) values('Higo','8A5C65');
 
-insert into categoria( nombre, urlimg, visibilidad_id ) values('Todo', 'https://i.imgur.com/fIu6we7.png', 1);
-insert into categoria( nombre, urlimg, visibilidad_id ) values('Tortas', 'https://i.imgur.com/J25jrWV.png', 1);
-insert into categoria( nombre, urlimg, visibilidad_id ) values('Cupcake', 'https://i.imgur.com/7nbJbS2.png', 1);
-insert into categoria( nombre, urlimg, visibilidad_id ) values('Galletas', 'https://i.imgur.com/2eAMYPR.png', 1);
-insert into categoria( nombre, urlimg, visibilidad_id ) values('Muñecos', 'https://i.imgur.com/tRJfCJb.png', 1);
+insert into categoria( nombre, nomimg,imgnombre, visibilidad_id ) values('Todo', '','https://i.imgur.com/fIu6we7.png', 1);
+insert into categoria( nombre, urlimg, imgnombre,visibilidad_id ) values('Tortas','' ,'https://i.imgur.com/J25jrWV.png', 1);
+insert into categoria( nombre, urlimg, imgnombre,visibilidad_id ) values('Cupcake','' ,'https://i.imgur.com/7nbJbS2.png', 1);
+insert into categoria( nombre, urlimg, imgnombre,visibilidad_id ) values('Galletas','' ,'https://i.imgur.com/2eAMYPR.png', 1);
+insert into categoria( nombre, urlimg, imgnombre,visibilidad_id ) values('Muñecos', '','https://i.imgur.com/tRJfCJb.png', 1);
 
 insert into producto( descripcion, nombre, precio, urlimg, categoria_id, receta_id, visibilidad_id)values('descripcion00', 'nombre00', 20.50, 'https://scontent-lim1-1.xx.fbcdn.net/v/t39.30808-6/241212651_4323374971093615_3815958070425376942_n.png?_nc_cat=106&ccb=1-5&_nc_sid=730e14&_nc_ohc=ysoHkaph64sAX_s5ryG&_nc_ht=scontent-lim1-1.xx&oh=8b1f4849adf739823675827e3413ed2a&oe=61A167E8', 2, null, 1);
 insert into producto( descripcion, nombre, precio, urlimg, categoria_id, receta_id, visibilidad_id)values('descripcion01', 'nombre01', 30.50, 'https://scontent-lim1-1.xx.fbcdn.net/v/t39.30808-6/241197756_4323381051093007_7450476239712494794_n.png?_nc_cat=103&ccb=1-5&_nc_sid=730e14&_nc_ohc=WV9BRL9O1pMAX_U3-Xr&tn=PbpgrqPRu8qcQDa8&_nc_ht=scontent-lim1-1.xx&oh=e46812d3d03fdd1587a90a50203789cf&oe=61A1BD1F', 2, null, 1);
@@ -88,3 +88,7 @@ insert into producto_relleno(producto_id,relleno_id) values(5,2);
 
 insert into producto_cubierta(producto_id,cubierta_id) values(6,2);
 insert into producto_altura(producto_id,altura_id) values(6,2);
+
+insert into insumo ( nombre,imgnombre,img ) value('Harina','','https://i.imgur.com/MLCPDVy.png');
+insert into insumo ( nombre,imgnombre,img ) value('Huevos','','https://i.imgur.com/tIKog7o.png');
+insert into insumo ( nombre,imgnombre,img ) value('Crema de Leche','','https://i.imgur.com/YUVM6Xi.png');
