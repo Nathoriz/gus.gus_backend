@@ -1,7 +1,6 @@
 package gustitodecasa.com.GustitoDeCasa_version_10.controller;
 
 import gustitodecasa.com.GustitoDeCasa_version_10.entity.Altura;
-import gustitodecasa.com.GustitoDeCasa_version_10.entity.Relleno;
 import gustitodecasa.com.GustitoDeCasa_version_10.service.AlturaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

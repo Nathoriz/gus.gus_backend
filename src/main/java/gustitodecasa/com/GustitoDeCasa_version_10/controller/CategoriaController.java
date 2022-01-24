@@ -1,14 +1,11 @@
 package gustitodecasa.com.GustitoDeCasa_version_10.controller;
 
+import gustitodecasa.com.GustitoDeCasa_version_10.entity.Categoria;
 import gustitodecasa.com.GustitoDeCasa_version_10.service.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping( "/categoria" )
@@ -20,5 +17,23 @@ public class CategoriaController {
     @GetMapping( "/listar" )
     public ResponseEntity<?> ListarCategoria(){
         return ResponseEntity.status( HttpStatus.OK ).body( categoriaService.listar() );
+    }
+
+    @PostMapping("/guardar")
+    public ResponseEntity<?> guardar(@RequestBody Categoria categoria){
+        return ResponseEntity.status(HttpStatus.OK).body(categoriaService.guardar(categoria));
+    }
+
+    @PutMapping("/actualizar")
+    public ResponseEntity<?> actualizar(@RequestBody Categoria categoria){
+        return categoriaService.actualizar(categoria);
+    }
+
+    @DeleteMapping("/eliminar/{id}")
+    public ResponseEntity<?> eliminar(@PathVariable Long id){ return categoriaService.eliminar(id);}
+
+    @GetMapping("/{id}")
+    public Categoria buscar(@PathVariable("id") Long id){
+        return categoriaService.buscar(id);
     }
 }
