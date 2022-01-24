@@ -77,4 +77,15 @@ public class PersonalizacionService {
         message.put("Mensaje","Eliminado");
         return new ResponseEntity<>(message, HttpStatus.OK);
     }
+
+    public String actualizarPrecio( Long id, Double precio ){
+        Personalizacion personalizacion = repository.findPersonalizacionById( id );
+        if( personalizacion != null ){
+            personalizacion.setPrecio( precio );
+            repository.save( personalizacion );
+            return "Precio Actualizado";
+        }else{
+            return "No existe registro";
+        }
+    }
 }

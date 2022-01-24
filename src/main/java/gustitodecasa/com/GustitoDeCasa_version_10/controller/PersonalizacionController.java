@@ -42,4 +42,9 @@ public class PersonalizacionController {
     public ResponseEntity<?> eliminar(@PathVariable("id") Long id){
         return ResponseEntity.status(HttpStatus.OK).body(service.eliminar(id));
     }
+
+    @PutMapping( "/{id}" )
+    public ResponseEntity<?> ActualizarPrecio( @PathVariable( "id" ) Long id, Double precio ){
+        return ResponseEntity.status( HttpStatus.OK ).body( service.actualizarPrecio( id, precio ) );
+    }
 }
