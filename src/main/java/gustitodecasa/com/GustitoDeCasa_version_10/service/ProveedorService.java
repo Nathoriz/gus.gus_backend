@@ -2,6 +2,8 @@ package gustitodecasa.com.GustitoDeCasa_version_10.service;
 
 import gustitodecasa.com.GustitoDeCasa_version_10.config.Error.exceptions.BadRequest;
 import gustitodecasa.com.GustitoDeCasa_version_10.entity.Proveedor;
+import gustitodecasa.com.GustitoDeCasa_version_10.entity.ProveedorInsumo;
+import gustitodecasa.com.GustitoDeCasa_version_10.repository.ProveedorInsumoRepository;
 import gustitodecasa.com.GustitoDeCasa_version_10.repository.ProveedorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +18,8 @@ import java.util.Map;
 public class ProveedorService {
     @Autowired
     private ProveedorRepository proveedorRepository;
+    @Autowired
+    private ProveedorInsumoRepository proveedorInsumoRepository;
 
     public List<Proveedor> listar() {return proveedorRepository.findAll();}
     public Proveedor guardar(Proveedor proveedor){
@@ -43,10 +47,20 @@ public class ProveedorService {
         if( proveedor.equals(null)) {
             message.put("Mensaje","El proveedor no existe");
             return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+        }else{
+            List<ProveedorInsumo> proveedorInsumoList = proveedorInsumoRepository.findAllByProveedorId(proveedor.getId()).orElse(null);
+            if(!proveedorInsumoList.equals(null)){
+                proveedorInsumoRepository.deleteAllByProveedorId(proveedor.getId());
+                proveedorRepository.deleteById(id);
+                message.put("Mensaje","Eliminado");
+                return new ResponseEntity<>(message, HttpStatus.OK);
+            }else{
+                proveedorRepository.deleteById(id);
+                message.put("Mensaje","Eliminado");
+                return new ResponseEntity<>(message, HttpStatus.OK);
+            }
         }
-        proveedorRepository.deleteById(id);
-        message.put("Mensaje","Eliminado");
-        return new ResponseEntity<>(message, HttpStatus.OK);}
+    }
     public Proveedor buscar(Long id ){
         return proveedorRepository.findById( id ).orElse(null);
     }
