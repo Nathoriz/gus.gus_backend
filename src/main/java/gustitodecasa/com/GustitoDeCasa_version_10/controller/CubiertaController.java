@@ -37,5 +37,8 @@ public class CubiertaController {
         return cubiertaService.buscar(id);
     }
 
-
+    @GetMapping( "/list" )
+    public ResponseEntity<?> buscarByNombre( String nombre ){
+        return ResponseEntity.status( HttpStatus.OK ).body( cubiertaService.buscarByNombre( nombre ) );
+    }
 }

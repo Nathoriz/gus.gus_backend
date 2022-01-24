@@ -50,4 +50,8 @@ public class CubiertaService {
     public Cubierta buscar(Long id){
         return cubiertaRepository.findById(id).orElse(null);
     }
+
+    public Cubierta buscarByNombre( String nombre ){
+        return cubiertaRepository.findCubiertaByNombre( nombre );
+    }
 }
