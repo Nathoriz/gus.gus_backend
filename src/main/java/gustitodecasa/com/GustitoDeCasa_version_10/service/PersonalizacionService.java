@@ -88,4 +88,10 @@ public class PersonalizacionService {
             return "No existe registro";
         }
     }
+
+    public List<Personalizacion> SearchByIdAndNombre( Long id, String nombre ){
+        List<Personalizacion> lista = repository.findAllByCliente_IdAndNombreContainingIgnoreCase( id, nombre );
+        if( lista.isEmpty() ) throw new BadRequest( "400" );
+        return lista;
+    }
 }

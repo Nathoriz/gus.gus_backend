@@ -47,4 +47,9 @@ public class PersonalizacionController {
     public ResponseEntity<?> ActualizarPrecio( @PathVariable( "id" ) Long id, Double precio ){
         return ResponseEntity.status( HttpStatus.OK ).body( service.actualizarPrecio( id, precio ) );
     }
+
+    @GetMapping( "/list/{id}" )
+    public ResponseEntity<?> SearchByIdAndNombre( @PathVariable( "id" ) Long id, String nombre ){
+        return ResponseEntity.status( HttpStatus.OK ).body( service.SearchByIdAndNombre( id, nombre ) );
+    }
 }
