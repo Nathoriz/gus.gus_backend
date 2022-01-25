@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface RellenoRepository extends JpaRepository<Relleno, Long> {
-
     Relleno findRellenoByDescripcion( String descrip );
     @Query( value = "SELECT * FROM relleno WHERE id <> '1'", nativeQuery = true )
     List<Relleno> ListAll();

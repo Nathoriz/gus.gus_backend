@@ -1,6 +1,7 @@
 package gustitodecasa.com.GustitoDeCasa_version_10.service;
 
 import gustitodecasa.com.GustitoDeCasa_version_10.Utils.other.DetalleProductoDTO;
+import gustitodecasa.com.GustitoDeCasa_version_10.config.Error.exceptions.BadRequest;
 import gustitodecasa.com.GustitoDeCasa_version_10.config.Error.exceptions.NotFound;
 import gustitodecasa.com.GustitoDeCasa_version_10.entity.*;
 import gustitodecasa.com.GustitoDeCasa_version_10.repository.*;
@@ -18,6 +19,8 @@ public class ProductoService {
     private ProductoRespository productoRespository;
     @Autowired
     private RecetaRepository recetaRepository;
+    @Autowired
+    private CategoriaRepository categoriaRepository;
 
     @Autowired
     private AlturaRepository alturaRepository;
@@ -41,13 +44,16 @@ public class ProductoService {
     @Autowired
     private ProductoSaborRepository productoSaborRepository;
 
-
-    public List<Producto> ListarProductos(){
+    public List<Producto> listar(){
         return productoRespository.findAll();
     }
 
-    public List<Producto> listaPorCategoria( String categoria ){
-        List<Producto> producto =  productoRespository.findProductoByCategoriaNombre( categoria );
+    public List<Producto> ListarProductosVisibles(){
+        return productoRespository.findAllByVisibilidadId(1L);
+    }
+
+    public List<Producto> listarProductosVisiblesPorCategoria( String categoria ){
+        List<Producto> producto =  productoRespository.findAllByVisibilidad_IdAndCategoria_Nombre(1L, categoria );
 
         if( producto.isEmpty() ){
             return producto;
@@ -57,7 +63,7 @@ public class ProductoService {
     }
 
     public List<Producto> filtroProductos( String nombre ){
-        List<Producto>  lista = productoRespository.findAllByNombreContainingIgnoreCase( nombre );
+        List<Producto>  lista = productoRespository.findAllByVisibilidad_IdAndNombreContainingIgnoreCase(1L, nombre );
         if( lista.isEmpty() ) throw new NotFound( "404" );
         return lista;
     }
@@ -72,12 +78,12 @@ public class ProductoService {
             List<Sabor> sabores= new ArrayList<>();
             List<Relleno> rellenos= new ArrayList<>();
 
-            ProductoAltura productoAltura = productoAlturaRepository.findProductoAlturaByProducto_Id(id);
-            ProductoCubierta productoCubierta = productoCubiertaRepository.findByProducto_Id(id);
+            ProductoAltura productoAltura = productoAlturaRepository.buscarPorProductoId(id);
+            ProductoCubierta productoCubierta = productoCubiertaRepository.buscarPorProductoId(id);
 
-            List<ProductoDiametro> productoDiametros = productoDiametroRepository.findAllByProducto_Id(id);
-            List<ProductoSabor> productoSabores = productoSaborRepository.findAllByProducto_Id(id);
-            List<ProductoRelleno> productoRellenos = productoRellenoRepository.findAllByProducto_Id(id);
+            List<ProductoDiametro> productoDiametros = productoDiametroRepository.listarPorProductoId(id);
+            List<ProductoSabor> productoSabores = productoSaborRepository.listarPorProductoId(id);
+            List<ProductoRelleno> productoRellenos = productoRellenoRepository.listarPorProductoId(id);
 
             if(productoAltura == null) {detalleProductoDTO.setAltura(alturaRepository.getById(1L));}else{
                 Altura altura = alturaRepository.findById(productoAltura.getAltura().getId()).orElse(alturaRepository.getById(1L));
@@ -132,5 +138,76 @@ public class ProductoService {
 
     public List<Producto> findForid( Long id ){
         return productoRespository.findProductoById( id );
+    }
+
+    public Producto guardar(Producto producto){
+        if(producto.getDescripcion().isEmpty())throw new BadRequest("Ingrese descripcion");
+        if(producto.getNombre().isEmpty())throw new BadRequest("Ingrese costo");
+        if(producto.getPrecio()  == 0.0)throw new BadRequest("Ingrese descripcion");
+        if(producto.getUrlimg().isEmpty())throw new BadRequest("Suba una imagen");
+
+        Categoria categoria = categoriaRepository.findById(producto.getCategoria().getId()).orElse(null);
+        Receta receta = recetaRepository.findById(producto.getReceta().getId()).orElse(null);
+
+        if(categoria == null)throw new BadRequest("Ingrese la categoria");
+        if(receta == null) producto.setReceta(null);
+
+        producto.setDescripcion(producto.getDescripcion());
+        producto.setNombre(producto.getNombre());
+        producto.setPrecio(producto.getPrecio());
+        producto.setUrlimg(producto.getUrlimg());
+        producto.setCategoria(producto.getCategoria());
+        producto.setReceta(producto.getReceta());
+        return productoRespository.save(producto);
+    }
+    public ResponseEntity<?> actualizar(Producto producto){
+        Producto object = productoRespository.findById(producto.getId()).orElse(null);
+        if(!object.equals(null)){
+            object.setDescripcion(producto.getDescripcion());
+            object.setNombre(producto.getNombre());
+            object.setPrecio(producto.getPrecio());
+            object.setUrlimg(producto.getUrlimg());
+            object.setCategoria(producto.getCategoria());
+            object.setReceta(producto.getReceta());
+            productoRespository.save(object);
+        }
+        Map<String, String> message = new HashMap<>();
+        message.put("Mensaje","Ok");
+        return new ResponseEntity<>(message, HttpStatus.OK);
+    }
+    public ResponseEntity<?>  eliminar(Long id){
+        Map<String, String> message = new HashMap<>();
+        Producto producto = productoRespository.findById(id).orElse(null);
+        if( producto.equals(null)) {
+            message.put("Mensaje","El producto no existe");
+            return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+        }else{
+            List<ProductoDiametro> diametros= productoDiametroRepository.findAllByProducto_Id(producto.getId()).orElse(null);
+            List<ProductoSabor> sabores= productoSaborRepository.findAllByProducto_Id(producto.getId()).orElse(null);
+            List<ProductoRelleno> rellenos= productoRellenoRepository.findAllByProducto_Id(producto.getId()).orElse(null);
+
+            ProductoAltura productoAltura = productoAlturaRepository.findProductoAlturaByProducto_Id(id).orElse(null);
+            ProductoCubierta productoCubierta = productoCubiertaRepository.findByProducto_Id(id).orElse(null);
+
+            if(!diametros.equals(null)){
+                productoDiametroRepository.deleteAllByProductoId(producto.getId());
+            }
+            if(!sabores.equals(null)){
+                productoSaborRepository.deleteAllByProductoId(producto.getId());
+            }
+            if(!rellenos.equals(null)){
+                productoRellenoRepository.deleteAllByProductoId(producto.getId());
+            }
+            if(!productoAltura.equals(null)){
+                productoAlturaRepository.deleteByProducto_Id(producto.getId());
+            }
+            if(!productoCubierta.equals(null)){
+                productoCubiertaRepository.deleteByProducto_Id(producto.getId());
+            }
+                productoRespository.deleteById(id);
+                message.put("Mensaje","Eliminado");
+                return new ResponseEntity<>(message, HttpStatus.OK);
+
+        }
     }
 }

@@ -6,7 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface ProductoRespository extends JpaRepository<Producto, Long> {
-    List<Producto> findProductoByCategoriaNombre( String nombre );
-    List<Producto> findAllByNombreContainingIgnoreCase( String nombre );
+    List<Producto> findAllByVisibilidadId(Long id);
+    List<Producto> findAllByVisibilidad_IdAndCategoria_Nombre( Long id,String nombre );
+    List<Producto> findAllByVisibilidad_IdAndNombreContainingIgnoreCase( Long id, String nombre );
     List<Producto> findProductoById( Long id );
 }
