@@ -1,6 +1,7 @@
 package gustitodecasa.com.GustitoDeCasa_version_10.service;
 
 import gustitodecasa.com.GustitoDeCasa_version_10.config.Error.exceptions.BadRequest;
+import gustitodecasa.com.GustitoDeCasa_version_10.entity.Insumo;
 import gustitodecasa.com.GustitoDeCasa_version_10.entity.Receta;
 import gustitodecasa.com.GustitoDeCasa_version_10.entity.RecetaInsumo;
 import gustitodecasa.com.GustitoDeCasa_version_10.repository.RecetaInsumoRepository;
@@ -21,6 +22,8 @@ public class RecetaService {
     private RecetaRepository repository;
     @Autowired
     private RecetaInsumoRepository recetaInsumoRepository;
+
+    public Receta buscarPorNombre(String nombre){return repository.findRecetaByDescripcion(nombre);}
 
     public List<Receta> listar() {return repository.findAll();}
     public Receta guardar(Receta receta){

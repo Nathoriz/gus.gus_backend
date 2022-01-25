@@ -2,6 +2,7 @@ package gustitodecasa.com.GustitoDeCasa_version_10.service;
 
 import gustitodecasa.com.GustitoDeCasa_version_10.config.Error.exceptions.BadRequest;
 import gustitodecasa.com.GustitoDeCasa_version_10.entity.Cubierta;
+import gustitodecasa.com.GustitoDeCasa_version_10.entity.Insumo;
 import gustitodecasa.com.GustitoDeCasa_version_10.repository.CubiertaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,6 +18,8 @@ public class CubiertaService {
     @Autowired
     private CubiertaRepository cubiertaRepository;
     public List<Cubierta> listar(){ return cubiertaRepository.findAll();}
+
+    public Cubierta buscarPorNombre(String nombre){return cubiertaRepository.findCubiertaByNombre(nombre);}
 
     public Cubierta guardar(Cubierta cubierta){
         if(cubierta.getNombre().isEmpty())throw new BadRequest("Ingrese nombre");

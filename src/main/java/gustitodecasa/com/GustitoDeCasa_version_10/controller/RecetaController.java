@@ -1,5 +1,6 @@
 package gustitodecasa.com.GustitoDeCasa_version_10.controller;
 
+import gustitodecasa.com.GustitoDeCasa_version_10.entity.Insumo;
 import gustitodecasa.com.GustitoDeCasa_version_10.entity.Receta;
 import gustitodecasa.com.GustitoDeCasa_version_10.service.RecetaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,5 +37,10 @@ public class RecetaController {
     @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<?> eliminar(@PathVariable("id") Long id){
         return ResponseEntity.status(HttpStatus.OK).body(service.eliminar(id));
+    }
+
+    @GetMapping( "/buscar" )
+    public Receta buscarPorNombre(String nombre ){
+        return service.buscarPorNombre(nombre);
     }
 }

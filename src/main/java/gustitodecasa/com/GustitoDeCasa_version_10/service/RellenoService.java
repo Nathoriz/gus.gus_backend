@@ -1,6 +1,7 @@
 package gustitodecasa.com.GustitoDeCasa_version_10.service;
 
 import gustitodecasa.com.GustitoDeCasa_version_10.config.Error.exceptions.BadRequest;
+import gustitodecasa.com.GustitoDeCasa_version_10.entity.Insumo;
 import gustitodecasa.com.GustitoDeCasa_version_10.entity.Relleno;
 import gustitodecasa.com.GustitoDeCasa_version_10.entity.Sabor;
 import gustitodecasa.com.GustitoDeCasa_version_10.repository.RellenoRepository;
@@ -17,6 +18,8 @@ import java.util.Map;
 public class RellenoService {
     @Autowired
     private RellenoRepository rellenoRepository;
+
+    public Relleno buscarPorNombre(String nombre){return rellenoRepository.findRellenoByDescripcion(nombre);}
 
     public List<Relleno> listar(){
         return rellenoRepository.ListAll();

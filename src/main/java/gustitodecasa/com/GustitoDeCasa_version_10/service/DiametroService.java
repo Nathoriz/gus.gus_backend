@@ -3,6 +3,7 @@ package gustitodecasa.com.GustitoDeCasa_version_10.service;
 import gustitodecasa.com.GustitoDeCasa_version_10.config.Error.exceptions.BadRequest;
 import gustitodecasa.com.GustitoDeCasa_version_10.entity.Diametro;
 import gustitodecasa.com.GustitoDeCasa_version_10.entity.Distrito;
+import gustitodecasa.com.GustitoDeCasa_version_10.entity.Insumo;
 import gustitodecasa.com.GustitoDeCasa_version_10.repository.DiametroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,8 @@ import java.util.Map;
 public class DiametroService {
     @Autowired
     private DiametroRepository diametroRepository;
+
+    public Diametro buscarPorNombre(String nombre){return diametroRepository.findDiametroByDescripcion(nombre);}
 
     public List<Diametro> listar(){
         return diametroRepository.ListAll();

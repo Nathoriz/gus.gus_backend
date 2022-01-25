@@ -2,6 +2,7 @@ package gustitodecasa.com.GustitoDeCasa_version_10.service;
 
 import gustitodecasa.com.GustitoDeCasa_version_10.config.Error.exceptions.BadRequest;
 import gustitodecasa.com.GustitoDeCasa_version_10.entity.Categoria;
+import gustitodecasa.com.GustitoDeCasa_version_10.entity.Insumo;
 import gustitodecasa.com.GustitoDeCasa_version_10.entity.Visibilidad;
 import gustitodecasa.com.GustitoDeCasa_version_10.repository.CategoriaRepository;
 import gustitodecasa.com.GustitoDeCasa_version_10.repository.VisibilidadRepository;
@@ -18,6 +19,8 @@ public class CategoriaService {
     private CategoriaRepository categoriaRepository;
     @Autowired
     private VisibilidadRepository visibilidadRepository;
+
+    public Categoria buscarPorNombre(String nombre){return categoriaRepository.findCategoriaByNombre(nombre).orElse(null);}
 
     public List<Categoria> listar(){return categoriaRepository.findAll();}
 

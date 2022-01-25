@@ -3,6 +3,7 @@ package gustitodecasa.com.GustitoDeCasa_version_10.service;
 
 import gustitodecasa.com.GustitoDeCasa_version_10.config.Error.exceptions.BadRequest;
 import gustitodecasa.com.GustitoDeCasa_version_10.entity.Altura;
+import gustitodecasa.com.GustitoDeCasa_version_10.entity.Insumo;
 import gustitodecasa.com.GustitoDeCasa_version_10.repository.AlturaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,8 @@ public class AlturaService {
 
     @Autowired
     private AlturaRepository alturaRepository;
+
+    public Altura buscarPorNombre(String nombre){return alturaRepository.findAlturaByDescripcion(nombre);}
 
     public List<Altura> listar(){
         return alturaRepository.findAll();

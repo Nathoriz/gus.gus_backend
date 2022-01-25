@@ -2,6 +2,7 @@ package gustitodecasa.com.GustitoDeCasa_version_10.service;
 
 import gustitodecasa.com.GustitoDeCasa_version_10.config.Error.exceptions.BadRequest;
 import gustitodecasa.com.GustitoDeCasa_version_10.entity.Altura;
+import gustitodecasa.com.GustitoDeCasa_version_10.entity.Insumo;
 import gustitodecasa.com.GustitoDeCasa_version_10.entity.Sabor;
 import gustitodecasa.com.GustitoDeCasa_version_10.repository.SaborRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,8 @@ import java.util.Map;
 public class SaborService {
     @Autowired
     private SaborRepository saborRepository;
+
+    public Sabor buscarPorNombre(String nombre){return saborRepository.findSaborByNombre(nombre);}
 
     public List<Sabor> listar(){
         return saborRepository.ListAll();

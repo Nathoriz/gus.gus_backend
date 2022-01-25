@@ -1,6 +1,7 @@
 package gustitodecasa.com.GustitoDeCasa_version_10.controller;
 
 import gustitodecasa.com.GustitoDeCasa_version_10.entity.Altura;
+import gustitodecasa.com.GustitoDeCasa_version_10.entity.Insumo;
 import gustitodecasa.com.GustitoDeCasa_version_10.service.AlturaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -36,4 +37,8 @@ public class AlturaController {
         return alturaService.buscar(id);
     }
 
+    @GetMapping( "/buscar" )
+    public Altura buscarPorNombre(String nombre ){
+        return alturaService.buscarPorNombre(nombre);
+    }
 }

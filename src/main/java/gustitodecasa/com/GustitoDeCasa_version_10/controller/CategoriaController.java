@@ -1,6 +1,7 @@
 package gustitodecasa.com.GustitoDeCasa_version_10.controller;
 
 import gustitodecasa.com.GustitoDeCasa_version_10.entity.Categoria;
+import gustitodecasa.com.GustitoDeCasa_version_10.entity.Insumo;
 import gustitodecasa.com.GustitoDeCasa_version_10.service.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,5 +36,10 @@ public class CategoriaController {
     @GetMapping("/{id}")
     public Categoria buscar(@PathVariable("id") Long id){
         return categoriaService.buscar(id);
+    }
+
+    @GetMapping( "/buscar" )
+    public Categoria buscarPorNombre(String nombre ){
+        return categoriaService.buscarPorNombre(nombre);
     }
 }
