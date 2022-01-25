@@ -19,6 +19,8 @@ public class InsumoService {
 
     public List<Insumo> listar(){return insumoRepository.findAll();}
 
+    public Insumo buscarPorNombre(String nombre){return insumoRepository.findInsumoByNombre(nombre);}
+
     public Insumo guardar(Insumo insumo){
         if(insumo.getNombre().isEmpty() || insumo.getImg().isEmpty()){
             if(insumo.getNombre().isEmpty()) throw new BadRequest("Ingrese el nombre");

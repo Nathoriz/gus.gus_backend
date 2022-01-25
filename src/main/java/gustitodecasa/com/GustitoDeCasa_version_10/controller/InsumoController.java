@@ -35,4 +35,9 @@ public class InsumoController {
     public Insumo buscar(@PathVariable("id") Long id){
         return insumoService.buscar(id);
     }
+
+    @GetMapping( "/buscar" )
+    public Insumo buscarPorNombre( String nombre ){
+        return insumoService.buscarPorNombre(nombre);
+    }
 }
