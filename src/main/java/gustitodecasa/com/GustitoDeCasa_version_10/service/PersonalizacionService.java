@@ -77,4 +77,21 @@ public class PersonalizacionService {
         message.put("Mensaje","Eliminado");
         return new ResponseEntity<>(message, HttpStatus.OK);
     }
+
+    public String actualizarPrecio( Long id, Double precio ){
+        Personalizacion personalizacion = repository.findPersonalizacionById( id );
+        if( personalizacion != null ){
+            personalizacion.setPrecio( precio );
+            repository.save( personalizacion );
+            return "Precio Actualizado";
+        }else{
+            return "No existe registro";
+        }
+    }
+
+    public List<Personalizacion> SearchByIdAndNombre( Long id, String nombre ){
+        List<Personalizacion> lista = repository.findAllByCliente_IdAndNombreContainingIgnoreCase( id, nombre );
+        if( lista.isEmpty() ) throw new BadRequest( "400" );
+        return lista;
+    }
 }

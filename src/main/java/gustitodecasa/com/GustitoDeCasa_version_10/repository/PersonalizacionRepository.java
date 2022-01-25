@@ -8,4 +8,5 @@ import java.util.List;
 public interface PersonalizacionRepository extends JpaRepository<Personalizacion,Long> {
     public Personalizacion findPersonalizacionById (Long id);
     public List<Personalizacion> findAllByCliente_Id(Long id);
+    List<Personalizacion> findAllByCliente_IdAndNombreContainingIgnoreCase( Long id, String nombre );
 }
