@@ -22,6 +22,7 @@ public class RecetaController {
     public ResponseEntity<?> buscar(@PathVariable("id") Long id){
         return ResponseEntity.status(HttpStatus.OK).body(service.buscar(id));
     }
+
     @PostMapping( "/registrar" )
     public ResponseEntity<?> guardar(@RequestBody Receta receta){
         return ResponseEntity.status(HttpStatus.OK).body(service.guardar(receta));

@@ -1,7 +1,6 @@
 package gustitodecasa.com.GustitoDeCasa_version_10.service;
 
 import gustitodecasa.com.GustitoDeCasa_version_10.config.Error.exceptions.BadRequest;
-import gustitodecasa.com.GustitoDeCasa_version_10.entity.Insumo;
 import gustitodecasa.com.GustitoDeCasa_version_10.entity.Receta;
 import gustitodecasa.com.GustitoDeCasa_version_10.entity.RecetaInsumo;
 import gustitodecasa.com.GustitoDeCasa_version_10.repository.RecetaInsumoRepository;
@@ -10,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
@@ -44,6 +44,7 @@ public class RecetaService {
         message.put("Mensaje","Ok");
         return new ResponseEntity<>(message, HttpStatus.OK);
     }
+    @Transactional
     public ResponseEntity<?>  eliminar(Long id){
         Map<String, String> message = new HashMap<>();
         Receta receta = repository.findById(id).orElse(null);
