@@ -175,6 +175,8 @@ public class ProductoService {
         message.put("Mensaje","Ok");
         return new ResponseEntity<>(message, HttpStatus.OK);
     }
+
+
     public ResponseEntity<?>  eliminar(Long id){
         Map<String, String> message = new HashMap<>();
         Producto producto = productoRespository.findById(id).orElse(null);
