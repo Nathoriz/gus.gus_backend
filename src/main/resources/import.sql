@@ -161,3 +161,6 @@ insert into noticias( fecha_creacion, imgurl, nombre, observacion, visibilidad_i
 insert into noticias( fecha_creacion, imgurl, nombre, observacion, visibilidad_id ) values( '2022-02-01', 'https://i.imgur.com/5wwjDUW.png', 'Fantasia Chocolate', 'Fantasia chocolate', 1 );
 insert into noticias( fecha_creacion, imgurl, nombre, observacion, visibilidad_id ) values( '2022-02-01', 'https://i.imgur.com/43NB2pl.png', 'Frase', 'Frase', 1 );
 
+insert into piso( nombre ) values ('1 Piso');
+insert into piso( nombre ) values ('2 Pisos');
+insert into piso( nombre ) values ('3 Pisos');
