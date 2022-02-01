@@ -48,10 +48,10 @@ insert into sabor(nombre,color) values('Chocolate','574240');
 insert into sabor(nombre,color) values('Naranja','F2A8A4');
 insert into sabor(nombre,color) values('Higo','8A5C65');
 
-insert into categoria( nombre, imgnombre,urlimg, visibilidad_id ) values('Todo', '','https://i.imgur.com/fIu6we7.png', 1);
-insert into categoria( nombre, imgnombre, urlimg,visibilidad_id ) values('Tortas','' ,'https://i.imgur.com/J25jrWV.png', 1);
-insert into categoria( nombre, imgnombre, urlimg,visibilidad_id ) values('Cupcake','' ,'https://i.imgur.com/7nbJbS2.png', 1);
-insert into categoria( nombre, imgnombre, urlimg,visibilidad_id ) values('Muñecos', '','https://i.imgur.com/tRJfCJb.png', 1);
+insert into categoria( nombre, imgnombre,urlimg, visibilidad_id ) values('Todo', '','https://i.imgur.com/tKFSSUM.png', 1);
+insert into categoria( nombre, imgnombre, urlimg,visibilidad_id ) values('Tortas','' ,'https://i.imgur.com/BiKMw1q.png', 1);
+insert into categoria( nombre, imgnombre, urlimg,visibilidad_id ) values('Cupcake','' ,'https://i.imgur.com/7qhnNs2.png', 1);
+insert into categoria( nombre, imgnombre, urlimg,visibilidad_id ) values('Muñecos', '','https://i.imgur.com/xxFD6gB.png', 1);
 
 insert into receta( costo_produccion, descripcion, tiempo_produccion ) values( 35.5, '3 Unidades Huevo, 250 Gramos Azúcar, 1/2 Taza Aceite De Maíz U Oliva, 158 Mililitros Leche, 1 Cucharadita Extracto De Vainilla, 180 Gramos harina, 60 Gramos Cacao En Polvo Nestlé, 2 Cucharaditas Polvo Para Hornear', 2.0 );
 insert into receta( costo_produccion, descripcion, tiempo_produccion ) values( 30.0, '3 Unidades Huevo, 250 Gramos Azúcar, 1/2 Taza Aceite De Maíz U Oliva, 158 Mililitros Leche, 1 Cucharadita Extracto De Vainilla, 180 Gramos harina, 60 Gramos Cacao En Polvo Nestlé, 2 Cucharaditas Polvo Para Hornear', 2.0 );
@@ -124,7 +124,7 @@ insert into producto( descripcion, nombre, precio, urlimg, categoria_id, receta_
 insert into producto( descripcion, nombre, precio, urlimg, categoria_id, receta_id, visibilidad_id) values('Cupcake de ositos', 'Love Osito', 30.50, 'https://i.imgur.com/VqZPvrk.png', 3, 4, 1);
 insert into producto( descripcion, nombre, precio, urlimg, categoria_id, receta_id, visibilidad_id) values('Aloha kid', 'Ohanna', 13.50, 'https://i.imgur.com/72qTV9z.png', 4, 5, 1);
 insert into producto( descripcion, nombre, precio, urlimg, categoria_id, receta_id, visibilidad_id) values('Osito papucho', 'Papu', 15.50, 'https://i.imgur.com/wCaz2vG.png', 4, 6, 1);
-insert into producto( descripcion, nombre, precio, urlimg, categoria_id, receta_id, visibilidad_id) values('Moto', 'Motoroli', 16.50, 'https://i.imgur.com/wCaz2vG.png', 4, 6, 1);
+insert into producto( descripcion, nombre, precio, urlimg, categoria_id, receta_id, visibilidad_id) values('Moto', 'Motoroli', 16.50, 'https://i.imgur.com/jKSgLrX.png', 4, 6, 1);
 
 insert into producto_cubierta(producto_id,cubierta_id) values(1,2);
 insert into producto_sabor(producto_id,sabor_id) values(1,2);
