@@ -23,8 +23,8 @@ public class ProductoSaborService {
     @Autowired
     private SaborRepository saborRepository;
 
-    public List<ProductoSabor> listar(){
-        return repository.findAll();
+    public List<ProductoSabor> listar(Long id){
+        return repository.findAllByProducto_Id(id).orElse(null);
     }
 
     public ProductoSabor guardar(ProductoSabor productoSabor){

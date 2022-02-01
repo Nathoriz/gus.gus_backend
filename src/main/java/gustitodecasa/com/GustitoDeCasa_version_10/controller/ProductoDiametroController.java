@@ -14,9 +14,9 @@ public class ProductoDiametroController {
     @Autowired
     private ProductoDiametroService service;
 
-    @GetMapping("/listar")
-    public ResponseEntity<?> listar(){
-        return ResponseEntity.status(HttpStatus.OK).body(service.listar());
+    @GetMapping("/listar/{id}")
+    public ResponseEntity<?> listar(@PathVariable("id") Long id){
+        return ResponseEntity.status(HttpStatus.OK).body(service.listar(id));
     }
 
     @PostMapping("/guardar")

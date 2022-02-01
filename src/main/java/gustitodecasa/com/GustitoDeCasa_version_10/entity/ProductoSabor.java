@@ -14,11 +14,11 @@ public class ProductoSabor {
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-//    @JoinColumn(name = "saborId", referencedColumnName = "id")
+//    @JoinColumn(name = "sabor_id", referencedColumnName = "id")
     private Sabor sabor;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-//    @JoinColumn(name = "productoId", referencedColumnName = "id")
+//    @JoinColumn(name = "producto_id", referencedColumnName = "id")
     private Producto producto;
 }

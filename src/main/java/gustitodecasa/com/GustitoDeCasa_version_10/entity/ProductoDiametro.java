@@ -13,8 +13,10 @@ public class ProductoDiametro {
     private Long id;
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+//    @JoinColumn(name = "diametro_id", referencedColumnName = "id")
     private Diametro diametro;
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+//    @JoinColumn(name = "producto_id", referencedColumnName = "id")
     private Producto producto;
 }

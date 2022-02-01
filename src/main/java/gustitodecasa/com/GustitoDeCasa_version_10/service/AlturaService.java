@@ -23,7 +23,7 @@ public class AlturaService {
     public Altura buscarPorNombre(String nombre){return alturaRepository.findAlturaByDescripcion(nombre);}
 
     public List<Altura> listar(){
-        return alturaRepository.findAll();
+        return alturaRepository.ListAll();
     }
 
     public Altura guardar(Altura altura){

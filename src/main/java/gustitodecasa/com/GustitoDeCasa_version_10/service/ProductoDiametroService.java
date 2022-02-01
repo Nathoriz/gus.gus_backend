@@ -23,8 +23,8 @@ public class ProductoDiametroService {
     @Autowired
     private DiametroRepository diametroRepository;
 
-    public List<ProductoDiametro> listar(){
-        return repository.findAll();
+    public List<ProductoDiametro> listar(Long id){
+        return repository.findAllByProducto_Id(id).orElse(null);
     }
 
     public ProductoDiametro guardar(ProductoDiametro productoDiametro){

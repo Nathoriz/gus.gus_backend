@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
@@ -62,8 +63,14 @@ public class ProductoService {
         return producto;
     }
 
-    public List<Producto> filtroProductos( String nombre ){
+    public List<Producto> filtroVisiblesProductos( String nombre ){
         List<Producto>  lista = productoRespository.findAllByVisibilidad_IdAndNombreContainingIgnoreCase(1L, nombre );
+        if( lista.isEmpty() ) throw new NotFound( "404" );
+        return lista;
+    }
+
+    public List<Producto> filtroTdosProductos( String nombre ){
+        List<Producto>  lista = productoRespository.findAllByNombreContainingIgnoreCase(nombre );
         if( lista.isEmpty() ) throw new NotFound( "404" );
         return lista;
     }
@@ -140,6 +147,10 @@ public class ProductoService {
         return productoRespository.findProductoById( id );
     }
 
+    public Producto findProductoForid( Long id ){
+        return productoRespository.buscarPoID( id ).orElse(null);
+    }
+
     public Producto guardar(Producto producto){
         if(producto.getDescripcion().isEmpty())throw new BadRequest("Ingrese descripcion");
         if(producto.getNombre().isEmpty())throw new BadRequest("Ingrese costo");
@@ -160,6 +171,7 @@ public class ProductoService {
         producto.setReceta(producto.getReceta());
         return productoRespository.save(producto);
     }
+
     public ResponseEntity<?> actualizar(Producto producto){
         Producto object = productoRespository.findById(producto.getId()).orElse(null);
         if(!object.equals(null)){
@@ -169,13 +181,36 @@ public class ProductoService {
             object.setUrlimg(producto.getUrlimg());
             object.setCategoria(producto.getCategoria());
             object.setReceta(producto.getReceta());
+            object.setVisibilidad(producto.getVisibilidad());
+
+//            List<ProductoDiametro> diametros= productoDiametroRepository.findAllByProducto_Id(producto.getId()).orElse(null);
+//            List<ProductoSabor> sabores= productoSaborRepository.findAllByProducto_Id(producto.getId()).orElse(null);
+//            List<ProductoRelleno> rellenos= productoRellenoRepository.findAllByProducto_Id(producto.getId()).orElse(null);
+//
+//            ProductoAltura productoAltura = productoAlturaRepository.findProductoAlturaByProducto_Id(producto.getId()).orElse(null);
+//            ProductoCubierta productoCubierta = productoCubiertaRepository.findByProducto_Id(producto.getId()).orElse(null);
+//
+//            if(!diametros.equals(null)){
+//                productoDiametroRepository.deleteAllByProductoId(producto.getId());
+//            }
+//            if(!sabores.equals(null)){
+//                productoSaborRepository.deleteAllByProductoId(producto.getId());
+//            }
+//            if(!rellenos.equals(null)){
+//                productoRellenoRepository.deleteAllByProductoId(producto.getId());
+//            }
+//            if(!productoAltura.equals(null)){
+//                productoAlturaRepository.deleteByProducto_Id(producto.getId());
+//            }
+//            if(!productoCubierta.equals(null)){
+//                productoCubiertaRepository.deleteByProducto_Id(producto.getId());
+//            }
             productoRespository.save(object);
         }
         Map<String, String> message = new HashMap<>();
         message.put("Mensaje","Ok");
         return new ResponseEntity<>(message, HttpStatus.OK);
     }
-
 
     public ResponseEntity<?>  eliminar(Long id){
         Map<String, String> message = new HashMap<>();
@@ -187,10 +222,8 @@ public class ProductoService {
             List<ProductoDiametro> diametros= productoDiametroRepository.findAllByProducto_Id(producto.getId()).orElse(null);
             List<ProductoSabor> sabores= productoSaborRepository.findAllByProducto_Id(producto.getId()).orElse(null);
             List<ProductoRelleno> rellenos= productoRellenoRepository.findAllByProducto_Id(producto.getId()).orElse(null);
-
-            ProductoAltura productoAltura = productoAlturaRepository.findProductoAlturaByProducto_Id(id).orElse(null);
-            ProductoCubierta productoCubierta = productoCubiertaRepository.findByProducto_Id(id).orElse(null);
-
+            List<ProductoAltura> productoAltura = productoAlturaRepository.findAllByProducto_Id(producto.getId()).orElse(null);
+            List<ProductoCubierta> productoCubierta = productoCubiertaRepository.findAllByProducto_Id(producto.getId()).orElse(null);
             if(!diametros.equals(null)){
                 productoDiametroRepository.deleteAllByProductoId(producto.getId());
             }
@@ -206,10 +239,9 @@ public class ProductoService {
             if(!productoCubierta.equals(null)){
                 productoCubiertaRepository.deleteByProducto_Id(producto.getId());
             }
-                productoRespository.deleteById(id);
-                message.put("Mensaje","Eliminado");
-                return new ResponseEntity<>(message, HttpStatus.OK);
-
+            productoRespository.deleteById(producto.getId());
+            message.put("Mensaje","Eliminado");
+            return new ResponseEntity<>(message, HttpStatus.OK);
         }
     }
 }

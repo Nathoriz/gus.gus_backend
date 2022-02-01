@@ -35,13 +35,23 @@ public class ProductoController {
     }
 
     @GetMapping( "/true/filtro" )
-    public ResponseEntity<?> FiltroProducto( String nombre ){
-        return ResponseEntity.status( HttpStatus.OK ).body( productoService.filtroProductos( nombre ) );
+    public ResponseEntity<?> FiltroVisibleProducto( String nombre ){
+        return ResponseEntity.status( HttpStatus.OK ).body( productoService.filtroVisiblesProductos( nombre ) );
+    }
+
+    @GetMapping( "/filtro" )
+    public ResponseEntity<?> FiltroTodosProducto( String nombre ){
+        return ResponseEntity.status( HttpStatus.OK ).body( productoService.filtroTdosProductos( nombre ) );
     }
 
     @GetMapping( "/{id}" )
     public ResponseEntity<?> DetalleProducto(@PathVariable( "id" ) Long id){
         return productoService.detalleProducto( id );
+    }
+
+    @GetMapping( "/buscar/{id}" )
+    public Producto buscarPorID(@PathVariable( "id" ) Long id){
+        return productoService.findProductoForid(id);
     }
 
     @GetMapping( "/find/{id}" )
@@ -63,5 +73,4 @@ public class ProductoController {
     public ResponseEntity<?> eliminar(@PathVariable("id") Long id){
         return ResponseEntity.status(HttpStatus.OK).body(productoService.eliminar(id));
     }
-
 }

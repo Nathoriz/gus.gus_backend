@@ -54,4 +54,19 @@ public class PedidoController {
     public ResponseEntity<?> eliminar(@PathVariable("id") Long id){
         return ResponseEntity.status(HttpStatus.OK).body(service.eliminar(id));
     }
+
+    @PutMapping( "/estado/{id}/{estado}" )
+    public ResponseEntity<?> actualizarEstado( @PathVariable("id") Long id, @PathVariable("estado") String estado ){
+        return ResponseEntity.status( HttpStatus.OK ).body( service.cambiarEstado(id,estado) );
+    }
+
+    @GetMapping("/{estado}/pedidoid")
+    public ResponseEntity<?> buscarPedidosPorEstadoAndId( @PathVariable("estado") String estado,String pedidoid){
+        return ResponseEntity.status(HttpStatus.OK).body(service.buscarPedidoEstadoIdLike(estado,pedidoid));
+    }
+
+    @GetMapping("/pedidoid")
+    public ResponseEntity<?> buscarPedidosPorId(String pedidoid){
+        return ResponseEntity.status(HttpStatus.OK).body(service.buscarPedidoIdLike(pedidoid));
+    }
 }

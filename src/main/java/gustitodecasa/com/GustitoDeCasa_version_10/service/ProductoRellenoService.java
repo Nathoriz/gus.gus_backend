@@ -23,8 +23,8 @@ public class ProductoRellenoService {
     @Autowired
     private RellenoRepository rellenoRepository;
 
-    public List<ProductoRelleno> listar(){
-        return repository.findAll();
+    public List<ProductoRelleno> listar(Long id){
+        return repository.findAllByProducto_Id(id).orElse(null);
     }
 
     public ProductoRelleno guardar(ProductoRelleno productoRelleno){

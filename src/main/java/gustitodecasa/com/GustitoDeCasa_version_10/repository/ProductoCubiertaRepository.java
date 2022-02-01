@@ -13,4 +13,6 @@ public interface ProductoCubiertaRepository extends JpaRepository<ProductoCubier
     ProductoCubierta buscarPorProductoId(Long id);
     Optional<ProductoCubierta> findByProducto_Id(Long id);
     public void deleteByProducto_Id(Long id);
+
+    public Optional<List<ProductoCubierta>> findAllByProducto_Id(Long id);
 }

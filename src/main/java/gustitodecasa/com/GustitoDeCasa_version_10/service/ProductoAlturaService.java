@@ -25,8 +25,8 @@ public class ProductoAlturaService {
     @Autowired
     private AlturaRepository alturaRepository;
 
-    public List<ProductoAltura> listar(){
-        return repository.findAll();
+    public List<ProductoAltura> listar(Long id){
+        return repository.findAllByProducto_Id(id).orElse(null);
     }
 
     public ProductoAltura guardar(ProductoAltura productoAltura){

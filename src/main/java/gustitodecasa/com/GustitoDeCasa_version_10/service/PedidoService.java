@@ -102,4 +102,28 @@ public class PedidoService {
         return list;
     }
 
+    public ResponseEntity<?> cambiarEstado(Long id, String estado){
+        Map<String, String> message = new HashMap<>();
+        Pedido pedido = repository.findById(id).orElse(null);
+        if(!pedido.equals(null)) {
+            pedido.setEstado(estadoRepository.findEstadoByNombre(estado));
+            repository.save(pedido);
+            message.put("Mensaje","Ok");
+            return new ResponseEntity<>(message, HttpStatus.OK);
+        }
+        message.put("Mensaje","El pedido no existe");
+        return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+    }
+
+    public List<Pedido> buscarPedidoEstadoIdLike(String estado, String pedidoId){
+        List<Pedido> list = repository.buscarPedidoPorEstadoAndID(estado,pedidoId);
+        if( list.isEmpty() ) throw new NotFound("404");
+        return list;
+    }
+
+    public List<Pedido> buscarPedidoIdLike(String pedidoId){
+        List<Pedido> list = repository.buscarPedidoPorID(pedidoId);
+        if( list.isEmpty() ) throw new NotFound("404");
+        return list;
+    }
 }

@@ -17,7 +17,7 @@ import java.util.Map;
 public class CubiertaService {
     @Autowired
     private CubiertaRepository cubiertaRepository;
-    public List<Cubierta> listar(){ return cubiertaRepository.findAll();}
+    public List<Cubierta> listar(){ return cubiertaRepository.ListAll();}
 
     public Cubierta buscarPorNombre(String nombre){return cubiertaRepository.findCubiertaByNombre(nombre);}
 

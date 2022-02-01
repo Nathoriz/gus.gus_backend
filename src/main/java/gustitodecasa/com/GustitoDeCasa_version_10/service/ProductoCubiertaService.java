@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
@@ -23,8 +24,8 @@ public class ProductoCubiertaService {
     @Autowired
     private CubiertaRepository cubiertaRepository;
 
-    public List<ProductoCubierta> listar(){
-        return repository.findAll();
+    public List<ProductoCubierta> listar(Long id){
+        return repository.findAllByProducto_Id(id).orElse(null);
     }
 
     public ProductoCubierta guardar(ProductoCubierta productoCubierta){
@@ -55,9 +56,10 @@ public class ProductoCubiertaService {
         return repository.findById(id).orElse(null);
     }
 
+
     public ResponseEntity<?>  eliminar(Long id){
         Map<String, String> message = new HashMap<>();
-        ProductoCubierta productoCubierta = repository.findById(id).orElse(null);
+        ProductoCubierta productoCubierta = repository.findByProducto_Id(id).orElse(null);
         if (productoCubierta.equals(null)) {
             message.put("Mensaje", "La cubierta no existe");
             return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
