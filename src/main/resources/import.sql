@@ -23,7 +23,7 @@ insert into altura(descripcion,precio)values('vacio',0);
 insert into relleno(descripcion)values('vacio');
 insert into cubierta(nombre)values('vacio');
 insert into diametro(descripcion,precio)values('vacio',0);
-insert into sabor(nombre,color)values('vacio','FFFFF');
+insert into sabor(nombre,color)values('vacio','FFFFFF');
 
 insert into relleno(descripcion) values('Manjar Blanco');
 insert into relleno(descripcion) values('Fodge');
