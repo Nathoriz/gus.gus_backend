@@ -20,6 +20,11 @@ public class CategoriaController {
         return ResponseEntity.status( HttpStatus.OK ).body( categoriaService.listar() );
     }
 
+    @GetMapping( "/listarAll" )
+    public ResponseEntity<?> ListarCategoriaAll(){
+        return ResponseEntity.status( HttpStatus.OK ).body( categoriaService.listarAll() );
+    }
+
     @PostMapping("/guardar")
     public ResponseEntity<?> guardar(@RequestBody Categoria categoria){
         return ResponseEntity.status(HttpStatus.OK).body(categoriaService.guardar(categoria));

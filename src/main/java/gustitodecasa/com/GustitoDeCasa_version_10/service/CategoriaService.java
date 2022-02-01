@@ -23,6 +23,7 @@ public class CategoriaService {
     public Categoria buscarPorNombre(String nombre){return categoriaRepository.findCategoriaByNombre(nombre).orElse(null);}
 
     public List<Categoria> listar(){return categoriaRepository.ListAll();}
+    public List<Categoria> listarAll(){return categoriaRepository.findAll();}
 
     public Categoria guardar(Categoria categoria){
         if(categoria.getNombre().isEmpty() || categoria.getUrlimg().isEmpty()){
