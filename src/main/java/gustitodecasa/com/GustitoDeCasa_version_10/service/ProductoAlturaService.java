@@ -26,7 +26,7 @@ public class ProductoAlturaService {
     private AlturaRepository alturaRepository;
 
     public List<ProductoAltura> listar(Long id){
-        return repository.findAllByProducto_Id(id).orElse(null);
+        return repository.listarByProductoId(id);
     }
 
     public ProductoAltura guardar(ProductoAltura productoAltura){

@@ -14,4 +14,7 @@ public interface ProductoSaborRepository extends JpaRepository<ProductoSabor,Lon
 
     public void deleteAllByProductoId(Long id);
     public Optional<List<ProductoSabor>> findAllByProducto_Id(Long id);
+
+    @Query(value="select * from producto_sabor as ps where ps.producto_id = ?1 And ps.sabor_id <> 1", nativeQuery = true)
+    List<ProductoSabor> listarByProductoId(Long id);
 }

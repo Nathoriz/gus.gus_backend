@@ -56,6 +56,6 @@ public class DistritoService {
     }
 
     public Distrito buscar( Long id ){
-        return distritoRepository.findById(id).orElse(null);
+        return distritoRepository.findDistritoById(id);
     }
 }

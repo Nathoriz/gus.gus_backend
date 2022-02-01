@@ -14,4 +14,7 @@ public interface ProductoDiametroRepository extends JpaRepository<ProductoDiamet
 
     public void deleteAllByProductoId(Long id);
     public Optional<List<ProductoDiametro>> findAllByProducto_Id(Long id);
+
+    @Query(value="select * from producto_diametro as ps where ps.producto_id = ?1 And ps.diametro_id <> 1", nativeQuery = true)
+    List<ProductoDiametro> listarByProductoId(Long id);
 }

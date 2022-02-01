@@ -37,6 +37,7 @@ public class Configurations extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/**")
                 .permitAll();
+        http.headers().frameOptions().disable();
     }
 
     public DaoAuthenticationProvider daoAuthenticationProvider(){

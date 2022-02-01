@@ -25,7 +25,7 @@ public class ProductoCubiertaService {
     private CubiertaRepository cubiertaRepository;
 
     public List<ProductoCubierta> listar(Long id){
-        return repository.findAllByProducto_Id(id).orElse(null);
+        return repository.litarbyProductoId(id);
     }
 
     public ProductoCubierta guardar(ProductoCubierta productoCubierta){

@@ -7,23 +7,23 @@ insert into admin(nombre,apellido,dni)values('Alex','Pilco','71220965');
 insert into usuario(cliente_id,admin_id,rol_id,usuario,contrasenia)values(1,null,1,'mayra','$2a$08$Vs4wxjUYSNDlw6dKC/VeD.CeI5t2lcrZmMuXGJms.wiCBddfTtGhS');
 insert into usuario(cliente_id,admin_id,rol_id,usuario,contrasenia)values(null,1,2,'alex','$2a$08$c.21KDwm.jAhWf9Ud9pAJuzuXwGweOE.xL9mtYU0ktEU0qsMLFUO6');
 
-insert into estado ( nombre ) value('EN ESPERA');
-insert into estado ( nombre ) value('PENDIENTE');
-insert into estado ( nombre ) value('ENVIADO');
-insert into estado ( nombre ) value('CANCELADO');
+insert into estado ( nombre ) values('EN ESPERA');
+insert into estado ( nombre ) values('PENDIENTE');
+insert into estado ( nombre ) values('ENVIADO');
+insert into estado ( nombre ) values('CANCELADO');
 
 insert into visibilidad( visible ) values(true);
-insert into visibilidad( visible ) values(false)
+insert into visibilidad( visible ) values(false);
 
-insert into distrito ( nombre,precio ) value('SJM','15');
-insert into distrito ( nombre,precio ) value('SJL','20');
-insert into distrito ( nombre,precio ) value('SURCO','20');
+insert into distrito ( nombre,precio ) values('SJM','15.5');
+insert into distrito ( nombre,precio ) values('SJL','25.5');
+insert into distrito ( nombre,precio ) values ('SURCO','28.5');
 
-insert into altura(descripcion,precio)value('vacio',0);
-insert into relleno(descripcion)value('vacio');
-insert into cubierta(nombre)value('vacio');
-insert into diametro(descripcion,precio)value('vacio',0);
-insert into sabor(nombre,color)value('vacio','FFFFF');
+insert into altura(descripcion,precio)values('vacio',0);
+insert into relleno(descripcion)values('vacio');
+insert into cubierta(nombre)values('vacio');
+insert into diametro(descripcion,precio)values('vacio',0);
+insert into sabor(nombre,color)values('vacio','FFFFF');
 
 insert into relleno(descripcion) values('Manjar Blanco');
 insert into relleno(descripcion) values('Fodge');
@@ -48,18 +48,83 @@ insert into sabor(nombre,color) values('Chocolate','574240');
 insert into sabor(nombre,color) values('Naranja','F2A8A4');
 insert into sabor(nombre,color) values('Higo','8A5C65');
 
-insert into categoria( nombre, nomimg,imgnombre, visibilidad_id ) values('Todo', '','https://i.imgur.com/fIu6we7.png', 1);
-insert into categoria( nombre, urlimg, imgnombre,visibilidad_id ) values('Tortas','' ,'https://i.imgur.com/J25jrWV.png', 1);
-insert into categoria( nombre, urlimg, imgnombre,visibilidad_id ) values('Cupcake','' ,'https://i.imgur.com/7nbJbS2.png', 1);
-insert into categoria( nombre, urlimg, imgnombre,visibilidad_id ) values('Galletas','' ,'https://i.imgur.com/2eAMYPR.png', 1);
-insert into categoria( nombre, urlimg, imgnombre,visibilidad_id ) values('Muñecos', '','https://i.imgur.com/tRJfCJb.png', 1);
+insert into categoria( nombre, imgnombre,urlimg, visibilidad_id ) values('Todo', '','https://i.imgur.com/fIu6we7.png', 1);
+insert into categoria( nombre, imgnombre, urlimg,visibilidad_id ) values('Tortas','' ,'https://i.imgur.com/J25jrWV.png', 1);
+insert into categoria( nombre, imgnombre, urlimg,visibilidad_id ) values('Cupcake','' ,'https://i.imgur.com/7nbJbS2.png', 1);
+insert into categoria( nombre, imgnombre, urlimg,visibilidad_id ) values('Muñecos', '','https://i.imgur.com/tRJfCJb.png', 1);
 
-insert into producto( descripcion, nombre, precio, urlimg, categoria_id, receta_id, visibilidad_id)values('descripcion00', 'nombre00', 20.50, 'https://scontent-lim1-1.xx.fbcdn.net/v/t39.30808-6/241212651_4323374971093615_3815958070425376942_n.png?_nc_cat=106&ccb=1-5&_nc_sid=730e14&_nc_ohc=ysoHkaph64sAX_s5ryG&_nc_ht=scontent-lim1-1.xx&oh=8b1f4849adf739823675827e3413ed2a&oe=61A167E8', 2, null, 1);
-insert into producto( descripcion, nombre, precio, urlimg, categoria_id, receta_id, visibilidad_id)values('descripcion01', 'nombre01', 30.50, 'https://scontent-lim1-1.xx.fbcdn.net/v/t39.30808-6/241197756_4323381051093007_7450476239712494794_n.png?_nc_cat=103&ccb=1-5&_nc_sid=730e14&_nc_ohc=WV9BRL9O1pMAX_U3-Xr&tn=PbpgrqPRu8qcQDa8&_nc_ht=scontent-lim1-1.xx&oh=e46812d3d03fdd1587a90a50203789cf&oe=61A1BD1F', 2, null, 1);
-insert into producto( descripcion, nombre, precio, urlimg, categoria_id, receta_id, visibilidad_id)values('descripcion02', 'nombre02', 30.50, 'https://scontent-lim1-1.xx.fbcdn.net/v/t1.6435-9/169307856_3747636572000794_3121185060354953223_n.png?_nc_cat=106&ccb=1-5&_nc_sid=730e14&_nc_aid=0&_nc_ohc=6NwwhWH6hnsAX9bgEHh&_nc_ht=scontent-lim1-1.xx&oh=4eb3c74484fcddfd39c9070911d68105&oe=61C0851A', 3, null, 1);
-insert into producto( descripcion, nombre, precio, urlimg, categoria_id, receta_id, visibilidad_id)values('descripcion03', 'nombre03', 30.50, 'https://scontent-lim1-1.xx.fbcdn.net/v/t1.6435-9/167632032_3729238430507275_3532525859115988022_n.png?_nc_cat=107&ccb=1-5&_nc_sid=730e14&_nc_ohc=GzaGna1sQyMAX-buQzQ&_nc_ht=scontent-lim1-1.xx&oh=ec7900801f86f4ed510ac7c5ae8f8066&oe=61C05D00', 3, null, 1);
-insert into producto( descripcion, nombre, precio, urlimg, categoria_id, receta_id, visibilidad_id)values('descripcion04', 'nombre04', 13.50, 'https://scontent-lim1-1.xx.fbcdn.net/v/t1.6435-9/129056461_3423546331076488_5076847378937020948_n.jpg?_nc_cat=111&ccb=1-5&_nc_sid=730e14&_nc_ohc=kypZJM56wN8AX_4n1Wk&tn=PbpgrqPRu8qcQDa8&_nc_ht=scontent-lim1-1.xx&oh=cf2c95e8c56867e58e9d800bb80b50ed&oe=61C14C93', 4, null, 1);
-insert into producto( descripcion, nombre, precio, urlimg, categoria_id, receta_id, visibilidad_id)values('descripcion05', 'nombre05', 15.50, 'https://scontent-lim1-1.xx.fbcdn.net/v/t1.6435-9/95219515_2829925823771878_1912250088789377024_n.jpg?_nc_cat=103&ccb=1-5&_nc_sid=730e14&_nc_ohc=3K5fN3rUZ_4AX_30DF5&tn=PbpgrqPRu8qcQDa8&_nc_ht=scontent-lim1-1.xx&oh=2f6f9e9adb6435d440df53922bd54093&oe=61C34872', 5, null, 1);
+insert into receta( costo_produccion, descripcion, tiempo_produccion ) values( 35.5, '3 Unidades Huevo, 250 Gramos Azúcar, 1/2 Taza Aceite De Maíz U Oliva, 158 Mililitros Leche, 1 Cucharadita Extracto De Vainilla, 180 Gramos harina, 60 Gramos Cacao En Polvo Nestlé, 2 Cucharaditas Polvo Para Hornear', 2.0 );
+insert into receta( costo_produccion, descripcion, tiempo_produccion ) values( 30.0, '3 Unidades Huevo, 250 Gramos Azúcar, 1/2 Taza Aceite De Maíz U Oliva, 158 Mililitros Leche, 1 Cucharadita Extracto De Vainilla, 180 Gramos harina, 60 Gramos Cacao En Polvo Nestlé, 2 Cucharaditas Polvo Para Hornear', 2.0 );
+insert into receta( costo_produccion, descripcion, tiempo_produccion ) values( 15.5, '3 Unidades Huevo, 250 Gramos Azúcar, 1/2 Taza Aceite De Maíz U Oliva, 158 Mililitros Leche, 1 Cucharadita Extracto De Vainilla, 180 Gramos harina, 60 Gramos Cacao En Polvo Nestlé, 2 Cucharaditas Polvo Para Hornear', 3.0 );
+insert into receta( costo_produccion, descripcion, tiempo_produccion ) values( 15.5, '3 Unidades Huevo, 250 Gramos Azúcar, 1/2 Taza Aceite De Maíz U Oliva, 158 Mililitros Leche, 1 Cucharadita Extracto De Vainilla, 180 Gramos harina, 60 Gramos Cacao En Polvo Nestlé, 2 Cucharaditas Polvo Para Hornear', 3.0 );
+insert into receta( costo_produccion, descripcion, tiempo_produccion ) values( 16.5, '3 Unidades Huevo, 250 Gramos Azúcar, 1/2 Taza Aceite De Maíz U Oliva, 158 Mililitros Leche, 1 Cucharadita Extracto De Vainilla, 180 Gramos harina, 60 Gramos Cacao En Polvo Nestlé, 2 Cucharaditas Polvo Para Hornear', 4.0 );
+insert into receta( costo_produccion, descripcion, tiempo_produccion ) values( 19.5, '3 Unidades Huevo, 250 Gramos Azúcar, 1/2 Taza Aceite De Maíz U Oliva, 158 Mililitros Leche, 1 Cucharadita Extracto De Vainilla, 180 Gramos harina, 60 Gramos Cacao En Polvo Nestlé, 2 Cucharaditas Polvo Para Hornear', 4.0 );
+
+insert into insumo( img, nombre,imgnombre ) values( 'https://wongfood.vteximg.com.br/arquivos/ids/472931-1000-1000/frontal-833.jpg?v=637677675083400000', 'Azucar', '' );
+insert into insumo( img, nombre,imgnombre  ) values( 'https://wongfood.vteximg.com.br/arquivos/ids/231013-1000-1000/Huevos-Pardos-Wong-Bandeja-15-Unid-1-9885192.jpg?v=636667670228500000', 'Huevos', '' );
+insert into insumo( img, nombre,imgnombre) values( 'https://wongfood.vteximg.com.br/arquivos/ids/472934-1000-1000/frontal1-4463.jpg?v=637677675090900000', 'Aceite de Oliva', '' );
+insert into insumo( img, nombre,imgnombre ) values( 'https://wongfood.vteximg.com.br/arquivos/ids/507320-1000-1000/frontal-37.jpg?v=637762341645600000', 'Leche', '' );
+insert into insumo( img, nombre,imgnombre ) values( 'https://wongfood.vteximg.com.br/arquivos/ids/492696-1000-1000/4724-01-111949.jpg?v=637716658013270000', 'Extracto de Vainilla', '' );
+insert into insumo( img, nombre,imgnombre ) values( 'https://wongfood.vteximg.com.br/arquivos/ids/290634-1000-1000/3269-1.jpg?v=636921693341270000', 'Harina Blanca Flor', '' );
+insert into insumo( img, nombre,imgnombre ) values( 'https://wongfood.vteximg.com.br/arquivos/ids/438979-1000-1000/Cacao-Org-nico-en-Polvo-Ecoandino-Doypack-200-g-1-135835807.jpg?v=637569872872030000', 'Cacao Orgánico en Polvo Ecoandino', '' );
+insert into insumo( img, nombre,imgnombre ) values( 'https://wongfood.vteximg.com.br/arquivos/ids/472951-1000-1000/98702-01-86301.jpg?v=637677675129700000', 'Polvo para Hornear', '' );
+
+insert into receta_insumo ( cantidad_uso, insumo_id, receta_id ) values( '3 Unidades Huevo', 3, 1 );
+insert into receta_insumo ( cantidad_uso, insumo_id, receta_id ) values( '250 Gramos Azúcar', 2, 1 );
+insert into receta_insumo ( cantidad_uso, insumo_id, receta_id ) values( '1/2 Taza Aceite De Maíz U Oliva', 4, 1 );
+insert into receta_insumo ( cantidad_uso, insumo_id, receta_id ) values( '158 Mililitros Leche', 5, 1 );
+insert into receta_insumo ( cantidad_uso, insumo_id, receta_id ) values( '1 Cucharadita Extracto De Vainilla', 6, 1 );
+insert into receta_insumo ( cantidad_uso, insumo_id, receta_id ) values( '180 Gramos harina', 7, 1 );
+insert into receta_insumo ( cantidad_uso, insumo_id, receta_id ) values( '2 Cucharaditas Polvo Para Hornear', 8, 1 );
+
+
+insert into receta_insumo ( cantidad_uso, insumo_id, receta_id ) values( '3 Unidades Huevo', 3, 2 );
+insert into receta_insumo ( cantidad_uso, insumo_id, receta_id ) values( '250 Gramos Azúcar', 2, 2 );
+insert into receta_insumo ( cantidad_uso, insumo_id, receta_id ) values( '1/2 Taza Aceite De Maíz U Oliva', 4, 2 );
+insert into receta_insumo ( cantidad_uso, insumo_id, receta_id ) values( '158 Mililitros Leche', 5, 2 );
+insert into receta_insumo ( cantidad_uso, insumo_id, receta_id ) values( '1 Cucharadita Extracto De Vainilla', 6, 2 );
+insert into receta_insumo ( cantidad_uso, insumo_id, receta_id ) values( '180 Gramos harina', 7, 2 );
+insert into receta_insumo ( cantidad_uso, insumo_id, receta_id ) values( '2 Cucharaditas Polvo Para Hornear', 8, 2 );
+
+insert into receta_insumo ( cantidad_uso, insumo_id, receta_id ) values( '3 Unidades Huevo', 3, 3 );
+insert into receta_insumo ( cantidad_uso, insumo_id, receta_id ) values( '250 Gramos Azúcar', 2, 3 );
+insert into receta_insumo ( cantidad_uso, insumo_id, receta_id ) values( '1/2 Taza Aceite De Maíz U Oliva', 4, 3 );
+insert into receta_insumo ( cantidad_uso, insumo_id, receta_id ) values( '158 Mililitros Leche', 5, 3 );
+insert into receta_insumo ( cantidad_uso, insumo_id, receta_id ) values( '1 Cucharadita Extracto De Vainilla', 6, 3 );
+insert into receta_insumo ( cantidad_uso, insumo_id, receta_id ) values( '180 Gramos harina', 7, 3 );
+insert into receta_insumo ( cantidad_uso, insumo_id, receta_id ) values( '2 Cucharaditas Polvo Para Hornear', 8, 3 );
+
+insert into receta_insumo ( cantidad_uso, insumo_id, receta_id ) values( '3 Unidades Huevo', 3, 4 );
+insert into receta_insumo ( cantidad_uso, insumo_id, receta_id ) values( '250 Gramos Azúcar', 2, 4 );
+insert into receta_insumo ( cantidad_uso, insumo_id, receta_id ) values( '1/2 Taza Aceite De Maíz U Oliva', 4, 4 );
+insert into receta_insumo ( cantidad_uso, insumo_id, receta_id ) values( '158 Mililitros Leche', 5, 4 );
+insert into receta_insumo ( cantidad_uso, insumo_id, receta_id ) values( '1 Cucharadita Extracto De Vainilla', 6, 4 );
+insert into receta_insumo ( cantidad_uso, insumo_id, receta_id ) values( '180 Gramos harina', 7, 4 );
+insert into receta_insumo ( cantidad_uso, insumo_id, receta_id ) values( '2 Cucharaditas Polvo Para Hornear', 8, 4 );
+
+insert into receta_insumo ( cantidad_uso, insumo_id, receta_id ) values( '3 Unidades Huevo', 3, 5 );
+insert into receta_insumo ( cantidad_uso, insumo_id, receta_id ) values( '250 Gramos Azúcar', 2, 5 );
+insert into receta_insumo ( cantidad_uso, insumo_id, receta_id ) values( '1/2 Taza Aceite De Maíz U Oliva', 4, 5 );
+insert into receta_insumo ( cantidad_uso, insumo_id, receta_id ) values( '158 Mililitros Leche', 5, 5 );
+insert into receta_insumo ( cantidad_uso, insumo_id, receta_id ) values( '1 Cucharadita Extracto De Vainilla', 6, 5 );
+insert into receta_insumo ( cantidad_uso, insumo_id, receta_id ) values( '180 Gramos harina', 7, 5 );
+insert into receta_insumo ( cantidad_uso, insumo_id, receta_id ) values( '2 Cucharaditas Polvo Para Hornear', 8, 5 );
+
+insert into receta_insumo ( cantidad_uso, insumo_id, receta_id ) values( '3 Unidades Huevo', 3, 6 );
+insert into receta_insumo ( cantidad_uso, insumo_id, receta_id ) values( '250 Gramos Azúcar', 2, 6 );
+insert into receta_insumo ( cantidad_uso, insumo_id, receta_id ) values( '1/2 Taza Aceite De Maíz U Oliva', 4, 6 );
+insert into receta_insumo ( cantidad_uso, insumo_id, receta_id ) values( '158 Mililitros Leche', 5, 6 );
+insert into receta_insumo ( cantidad_uso, insumo_id, receta_id ) values( '1 Cucharadita Extracto De Vainilla', 6, 6 );
+insert into receta_insumo ( cantidad_uso, insumo_id, receta_id ) values( '180 Gramos harina', 7, 6 );
+insert into receta_insumo ( cantidad_uso, insumo_id, receta_id ) values( '2 Cucharaditas Polvo Para Hornear', 8, 6 );
+
+insert into producto( descripcion, nombre, precio, urlimg, categoria_id, receta_id, visibilidad_id) values('Torta de 2 pisos', 'Rosa Elegante', 60.00, 'https://i.imgur.com/WxbKlo8.jpg', 2, 1, 1);
+insert into producto( descripcion, nombre, precio, urlimg, categoria_id, receta_id, visibilidad_id) values('Torta de 1 piso', 'Conejito Rosa', 30.50, 'https://i.imgur.com/HsL5fvX.png', 2, 2, 1);
+insert into producto( descripcion, nombre, precio, urlimg, categoria_id, receta_id, visibilidad_id) values('Cupcake de minios 12 Unidades', 'Minios Pra', 30.50, 'https://i.imgur.com/B2UQyYd.png', 3, 3, 1);
+insert into producto( descripcion, nombre, precio, urlimg, categoria_id, receta_id, visibilidad_id) values('Cupcake de ositos', 'Love Osito', 30.50, 'https://i.imgur.com/VqZPvrk.png', 3, 4, 1);
+insert into producto( descripcion, nombre, precio, urlimg, categoria_id, receta_id, visibilidad_id) values('Aloha kid', 'Ohanna', 13.50, 'https://i.imgur.com/72qTV9z.png', 4, 5, 1);
+insert into producto( descripcion, nombre, precio, urlimg, categoria_id, receta_id, visibilidad_id) values('Osito papucho', 'Papu', 15.50, 'https://i.imgur.com/wCaz2vG.png', 4, 6, 1);
+insert into producto( descripcion, nombre, precio, urlimg, categoria_id, receta_id, visibilidad_id) values('Moto', 'Motoroli', 16.50, 'https://i.imgur.com/wCaz2vG.png', 4, 6, 1);
 
 insert into producto_cubierta(producto_id,cubierta_id) values(1,2);
 insert into producto_sabor(producto_id,sabor_id) values(1,2);
@@ -89,6 +154,8 @@ insert into producto_relleno(producto_id,relleno_id) values(5,2);
 insert into producto_cubierta(producto_id,cubierta_id) values(6,2);
 insert into producto_altura(producto_id,altura_id) values(6,2);
 
-insert into insumo ( nombre,imgnombre,img ) value('Harina','','https://i.imgur.com/MLCPDVy.png');
-insert into insumo ( nombre,imgnombre,img ) value('Huevos','','https://i.imgur.com/tIKog7o.png');
-insert into insumo ( nombre,imgnombre,img ) value('Crema de Leche','','https://i.imgur.com/YUVM6Xi.png');
+
+insert into noticias( fecha_creacion, imgurl, nombre, observacion, visibilidad_id ) values( '2022-02-01', 'https://i.imgur.com/QQGGN0x.png', '14 de Febrero', '14 Febrero', 1 );
+insert into noticias( fecha_creacion, imgurl, nombre, observacion, visibilidad_id ) values( '2022-02-01', 'https://i.imgur.com/5wwjDUW.png', 'Fantasia Chocolate', 'Fantasia chocolate', 1 );
+insert into noticias( fecha_creacion, imgurl, nombre, observacion, visibilidad_id ) values( '2022-02-01', 'https://i.imgur.com/43NB2pl.png', 'Frase', 'Frase', 1 );
+

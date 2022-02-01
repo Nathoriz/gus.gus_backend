@@ -15,4 +15,7 @@ public interface ProductoCubiertaRepository extends JpaRepository<ProductoCubier
     public void deleteByProducto_Id(Long id);
 
     public Optional<List<ProductoCubierta>> findAllByProducto_Id(Long id);
+
+    @Query(value="select * from producto_cubierta as ps where ps.producto_id = ?1 And ps.cubierta_id <> 1", nativeQuery = true)
+    List<ProductoCubierta> litarbyProductoId(Long id);
 }

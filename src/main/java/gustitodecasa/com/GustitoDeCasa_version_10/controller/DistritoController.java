@@ -38,7 +38,7 @@ public class DistritoController {
         return ResponseEntity.status( HttpStatus.OK ).body( distritoService.buscarPorNombre(nombre));
     }
 
-    @GetMapping( "/{id}}" )
+    @GetMapping( "/{id}" )
     public ResponseEntity<?> buscar(@PathVariable Long id ){
         return ResponseEntity.status( HttpStatus.OK ).body( distritoService.buscar(id) );
     }

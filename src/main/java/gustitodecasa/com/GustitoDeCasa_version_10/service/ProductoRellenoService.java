@@ -24,7 +24,7 @@ public class ProductoRellenoService {
     private RellenoRepository rellenoRepository;
 
     public List<ProductoRelleno> listar(Long id){
-        return repository.findAllByProducto_Id(id).orElse(null);
+        return repository.listarByProductoId(id);
     }
 
     public ProductoRelleno guardar(ProductoRelleno productoRelleno){

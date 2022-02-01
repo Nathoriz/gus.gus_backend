@@ -14,4 +14,7 @@ public interface ProductoRellenoRepository extends JpaRepository<ProductoRelleno
 
     public void deleteAllByProductoId(Long id);
     public Optional<List<ProductoRelleno>> findAllByProducto_Id(Long id);
+
+    @Query(value="select * from producto_relleno as ps where ps.producto_id = ?1 And ps.relleno_id <> 1", nativeQuery = true)
+    List<ProductoRelleno> listarByProductoId(Long id);
 }
