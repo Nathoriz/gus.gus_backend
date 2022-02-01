@@ -1,5 +1,5 @@
-insert into rol(tiporol) values('CLIENTE');
-insert into rol(tiporol) values('ADMIN');
+insert into rol (tiporol) values ('CLIENTE');
+insert into rol (tiporol) values ('ADMIN');
 
 insert into cliente(nombre,apellido,telefono)values('Mayra','Ortega','953625235');
 insert into admin(nombre,apellido,dni)values('Alex','Pilco','71220965');
