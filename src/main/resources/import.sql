@@ -137,22 +137,24 @@ insert into producto_cubierta(producto_id,cubierta_id) values(2,2);
 insert into producto_sabor(producto_id,sabor_id) values(2,2);
 insert into producto_sabor(producto_id,sabor_id) values(2,3);
 insert into producto_diametro(producto_id,diametro_id) values(2,2);
-insert into producto_diametro(producto_id,diametro_id) values(2,3);
 insert into producto_relleno(producto_id,relleno_id) values(2,2);
 
-insert into producto_cubierta(producto_id,cubierta_id) values(3,2);
+insert into producto_cubierta(producto_id,cubierta_id) values(3,3);
 insert into producto_sabor(producto_id,sabor_id) values(3,2);
-insert into producto_relleno(producto_id,relleno_id) values(3,3)
+insert into producto_relleno(producto_id,relleno_id) values(3,2);
 
 insert into producto_cubierta(producto_id,cubierta_id) values(4,2);
 insert into producto_sabor(producto_id,sabor_id) values(4,2);
-insert into producto_relleno(producto_id,relleno_id) values(4,2)
+insert into producto_relleno(producto_id,relleno_id) values(4,3)
 
-insert into producto_sabor(producto_id,sabor_id) values(5,2);
-insert into producto_relleno(producto_id,relleno_id) values(5,2);
+insert into producto_cubierta(producto_id,cubierta_id) values(5,2);
+insert into producto_altura(producto_id,altura_id) values(5,2);
 
 insert into producto_cubierta(producto_id,cubierta_id) values(6,2);
 insert into producto_altura(producto_id,altura_id) values(6,2);
+
+insert into producto_cubierta(producto_id,cubierta_id) values(7,2);
+insert into producto_altura(producto_id,altura_id) values(7,5);
 
 
 insert into noticias( fecha_creacion, imgurl, nombre, observacion, visibilidad_id ) values( '2022-02-01', 'https://i.imgur.com/QQGGN0x.png', '14 de Febrero', '14 Febrero', 1 );
